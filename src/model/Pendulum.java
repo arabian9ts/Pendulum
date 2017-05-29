@@ -1,5 +1,6 @@
 package model;
 
+import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.ode.SolverStopException;
 
@@ -11,36 +12,38 @@ import org.mklab.nfc.ode.SolverStopException;
 public class Pendulum extends org.mklab.tool.control.system.continuous.BaseContinuousExplicitDynamicSystem {
 
 	/**
-	 * デフォルトコンストラクタ
-	 * @param inputSize 入力行列のサイズ
-	 * @param outputSize 出力行列のサイズ
-	 * @param stateSize 状態ベクトルのサイズ
+	 * コンストラクタ
 	 */
-	public Pendulum(int inputSize, int outputSize, int stateSize) {
-		super(inputSize, outputSize, stateSize);
-	}
-
-	/**
-	 * f
-	 */
-	public Pendulum() {
-		this(1,1,1);
+	public Pendulum(){
+		super(1, 2, 4);
+		setHasDirectFeedthrough(false);
 	}
 
 	/**
 	 * @see org.mklab.tool.control.system.continuous.ContinuousExplicitDynamicSystem#stateEquation(double, org.mklab.nfc.matrix.Matrix, org.mklab.nfc.matrix.Matrix)
 	 */
 	public Matrix stateEquation(double t, Matrix x, Matrix u) throws SolverStopException {
-		//
-		return null;
+		DoubleMatrix dx;
+		
+		/**
+		 * dxの計算用実装
+		 */
+		
+		return dx=null;
 	}
 	
 	/**
-	 * @return as
+	 * 出力方程式にもとづき出力を返す
+	 * @return 出力
 	 */
-	public Matrix outputEquation(){
+	public Matrix outputEquation(double t, Matrix x){
+		DoubleMatrix y;
 		
-		return null;
+		/**
+		 * 出力の計算用実装
+		 */
+		
+		return y=null;
 	}
 	
 }
