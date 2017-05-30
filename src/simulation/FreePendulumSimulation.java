@@ -36,7 +36,7 @@ public class FreePendulumSimulation {
 		
 		RungeKuttaFehlberg solver = new RungeKuttaFehlberg();
 		solver.setAbsoluteTolerance(1.0E-5);
-		
+		System.out.println(system);
 		new SystemSolver(solver).solveAuto(system, 0.0, 5.0);
 		DoubleMatrix t = solver.getTimeSeries();
 		DoubleMatrix y = solver.getOutputSeries();

@@ -37,6 +37,10 @@ public class Pendulum extends org.mklab.tool.control.system.continuous.BaseConti
 	/** uから入力電圧から台車に働く力 */
 	@Parameter(name="a", unit={}, description="uから入力電圧から台車に働く力")
 	protected double a = 0.73;
+	
+	protected double c1 = 0.1;
+	protected double c2 = 0.1;
+	
 
 	/**
 	 * コンストラクタ
@@ -59,7 +63,7 @@ public class Pendulum extends org.mklab.tool.control.system.continuous.BaseConti
 		double xxdot = ((DoubleMatrix)x).getDoubleElement(1);
 		double thdot = ((DoubleMatrix)x).getDoubleElement(1);
 		
-		DoubleMatrix dx = new DoubleMatrix(new double[]{xxdot, thdot, 0, 0});
+		DoubleMatrix dx;
 		
 		DoubleMatrix K = new DoubleMatrix(new double[][]{
 			{this.M + this.m,            this.m*this.l*Math.cos(th)},
@@ -78,23 +82,32 @@ public class Pendulum extends org.mklab.tool.control.system.continuous.BaseConti
 		/**
 		 * dxの計算
 		 */
-		dx.getRowVectors(3,4).appendDown(dr_dth);
+		dx = (DoubleMatrix)x.getRowVectors(3,4).appendDown(dr_dth);
 		
 		return dx;
 	}
 
 	/**
 	 * 出力方程式にもとづき出力を返す
+	 * @param t 時刻
+	 * @param x 状態
 	 * @return 出力
 	 */
+	@Override
 	public Matrix outputEquation(double t, Matrix x){
 		DoubleMatrix y;
 		
 		/**
 		 * 出力の計算
 		 */
+		DoubleMatrix C = new DoubleMatrix(new double[][]{
+			{this.c1, 0, 0, 0},
+			{0, this.c2, 0, 0}
+		});
 		
-		return y=null;
+		y = C.multiply((DoubleMatrix)x);
+				
+		return y;
 	}
 	
 }
