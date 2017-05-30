@@ -59,9 +59,9 @@ public class Pendulum extends org.mklab.tool.control.system.continuous.BaseConti
 	 * @see org.mklab.tool.control.system.continuous.ContinuousExplicitDynamicSystem#stateEquation(double, org.mklab.nfc.matrix.Matrix, org.mklab.nfc.matrix.Matrix)
 	 */
 	public Matrix stateEquation(double t, Matrix x, Matrix u) {
-		double th = ((DoubleMatrix)x).getDoubleElement(1);
-		double xxdot = ((DoubleMatrix)x).getDoubleElement(1);
-		double thdot = ((DoubleMatrix)x).getDoubleElement(1);
+		double th = ((DoubleMatrix)x).getDoubleElement(2);
+		double xxdot = ((DoubleMatrix)x).getDoubleElement(3);
+		double thdot = ((DoubleMatrix)x).getDoubleElement(4);
 		
 		DoubleMatrix dx;
 		
