@@ -1,10 +1,9 @@
 package model;
-import org.mklab.nfc.*;
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
-import org.mklab.nfc.ode.SolverStopException;
-import org.mklab.tool.control.system.continuous.*;
-import org.mklab.tool.control.system.parameter.*;
+import org.mklab.tool.control.system.continuous.BaseContinuousExplicitDynamicSystem;
+import org.mklab.tool.control.system.parameter.Parameter;
+import org.mklab.tool.control.system.parameter.SIunit;
 
 
 /**
@@ -14,12 +13,24 @@ import org.mklab.tool.control.system.parameter.*;
  */
 public class Cart extends BaseContinuousExplicitDynamicSystem {
 	// パラメータをフィールドとして定義します
+	/** 台車の質量 */
+	@Parameter(name="M", unit=SIunit.kg, description="台車の質量")
+	protected double M = 1.001;
+	/** 台車の摩擦係数 */
+	@Parameter(name="f", unit={}, description="台車の摩擦係数")
+	protected double f = 9.67;
+	/** 台車に加わる力の近似直線の傾き */
+	protected double a = 0.49;
+	
+	protected double c1 = 1.0;
+	protected double c2 = 1.0;
+	
 	
 	/**
 	 * コンストラクタ
 	 */
 	public Cart(){
-		super(1,2,4);
+		super(1,1,2);
 		setHasDirectFeedthrough(false);
 	}
 
@@ -28,8 +39,18 @@ public class Cart extends BaseContinuousExplicitDynamicSystem {
 	 * @see org.mklab.tool.control.system.continuous.ContinuousExplicitDynamicSystem#stateEquation(double, org.mklab.nfc.matrix.Matrix, org.mklab.nfc.matrix.Matrix)
 	 */
 	public Matrix stateEquation(double t, Matrix x, Matrix u) {
-		DoubleMatrix dx=null;
+		DoubleMatrix dx;
+		
+		double r2 = ((DoubleMatrix)x).getDoubleElement(2);
+		double _u = ((DoubleMatrix)u).getDoubleElement(1);
+		
+		
 		// 微分の実装
+		dx = new DoubleMatrix(new double[][]{
+			{r2},
+			{this.a*_u/this.M - this.f*r2/this.M}	
+		});
+		
 		return dx;
 	}
 	
@@ -39,8 +60,11 @@ public class Cart extends BaseContinuousExplicitDynamicSystem {
 	 */
 	@Override
 	public Matrix outputEquation(double t, Matrix x){
-		DoubleMatrix y=null;
+		DoubleMatrix y;
+		
 		// 出力計算の実装
+		y = new DoubleMatrix(new double[]{this.c1 * ((DoubleMatrix)x).getDoubleElement(1)});
+		
 		return y;
 	}
 	

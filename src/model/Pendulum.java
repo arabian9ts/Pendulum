@@ -2,7 +2,6 @@ package model;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.Matrix;
-import org.mklab.nfc.ode.SolverStopException;
 import org.mklab.tool.control.system.parameter.Parameter;
 import org.mklab.tool.control.system.parameter.SIunit;
 

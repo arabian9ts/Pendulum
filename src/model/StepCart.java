@@ -1,9 +1,9 @@
 package model;
 
-import org.mklab.nfc.*;
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.tool.control.system.*;
-import org.mklab.tool.control.system.source.*;
+import org.mklab.tool.control.system.SystemBuilder;
+import org.mklab.tool.control.system.SystemOperator;
+import org.mklab.tool.control.system.source.StepSource;
 
 /**
  * 台車にステップ入力を加えたシステムを生成するクラスです
@@ -20,7 +20,7 @@ public class StepCart {
 		// 台車
 		Cart cartSystem = new Cart();
 		// 台車の初期状態を設定
-		cartSystem.setInitialState(new DoubleMatrix(new double[]{0,0}).transpose());
+		cartSystem.setInitialState(new DoubleMatrix(new double[]{0, 0}).transpose());
 		
 		// ステップ信号
 		StepSource stepSystem = new StepSource();

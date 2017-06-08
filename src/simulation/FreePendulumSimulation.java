@@ -3,20 +3,14 @@ package simulation;
 import java.io.IOException;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
-import org.mklab.nfc.matrix.Matrix;
 import org.mklab.nfc.ode.RungeKuttaFehlberg;
-import org.mklab.nfc.ode.SolverStopException;
 import org.mklab.nfc.util.Pause;
-import org.mklab.tool.control.system.SystemBuilder;
 import org.mklab.tool.control.system.SystemOperator;
 import org.mklab.tool.control.system.SystemSolver;
-import org.mklab.tool.control.system.continuous.BaseContinuousExplicitDynamicSystem;
-import org.mklab.tool.control.system.source.ConstantSource;
 import org.mklab.tool.graph.gnuplot.Canvas;
 import org.mklab.tool.graph.gnuplot.Gnuplot;
 
 import model.FreePendulum;
-import model.Pendulum;
 
 /**
  * 倒立振子の自由応答のシミュレーションを行う
