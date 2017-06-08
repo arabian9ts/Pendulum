@@ -15,28 +15,28 @@ public class Pendulum extends org.mklab.tool.control.system.continuous.BaseConti
 	
 	/** 台車の質量 */
 	@Parameter(name="M", unit=SIunit.kg, description="台車の質量")
-	protected double M = 0.16;
+	protected double M = 1.00;
 	/** 振子の質量 */
 	@Parameter(name="m", unit=SIunit.kg, description="振子の質量")
-	protected double m = 0.039;
+	protected double m = 0.038;
 	/** 振子の慣性モーメント */
 	@Parameter(name="J", unit={}, description="振子の慣性モーメント")
-	protected double J = 0.045e-4;
+	protected double J = 3.9e-4;
 	/** 振子の長さ	 */
 	@Parameter(name="l", unit=SIunit.m, description="振子の長さ")
-	protected double l = 0.121;
+	protected double l = 0.12;
 	/** 台車の摩擦係数 */
 	@Parameter(name="f", unit={SIunit.N, SIunit.m_1, SIunit.s}, description="台車の摩擦係数")
-	protected double f = 2.6;
+	protected double f = 9.67;
 	/** 台車の摩擦係数 */
 	@Parameter(name="c", unit={}, description="振子の回転摩擦係数")
-	protected double c = 4.210e-4;
+	protected double c = 9.8e-5;
 	/** 重力加速度 */
 	@Parameter(name="g", unit={}, description="重力加速度")
 	protected double g = 9.8;
 	/** uから入力電圧から台車に働く力 */
 	@Parameter(name="a", unit={}, description="uから入力電圧から台車に働く力")
-	protected double a = 0.73;
+	protected double a = 0.05;
 	
 	protected double c1 = 0.1;
 	protected double c2 = 0.1;
