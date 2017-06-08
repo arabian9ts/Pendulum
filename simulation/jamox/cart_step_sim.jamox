@@ -3,7 +3,7 @@
     <system name="cart_step_sim.jamox">
         <parameters name="simulationParameter">
             <param name="startTime">0.0</param>
-            <param name="endTime">10.0</param>
+            <param name="endTime">2.0</param>
             <param name="minimumSavingInterval">0.001</param>
             <param name="solverType">org.mklab.nfc.ode.RungeKuttaFehlberg</param>
             <param name="absoluteTolerance">1.0E-6</param>
@@ -48,18 +48,18 @@
             <param name="drawingForPositiveFrequency">true</param>
             <param name="drawingUnitCircle">true</param>
         </parameters>
-        <block name="" id="122">
-            <port id="123" name="u123" type="input">
-                <figure x="406" y="210" angle="0"/>
+        <block name="" id="207">
+            <port id="208" name="u208" type="input">
+                <figure x="383" y="245" angle="0"/>
             </port>
-            <port id="124" name="y124" type="output">
-                <figure x="486" y="210" angle="0"/>
+            <port id="209" name="y209" type="output">
+                <figure x="463" y="245" angle="0"/>
             </port>
             <param name="class_name">model.Cart</param>
             <param name="initial_state">[0 0]'</param>
             <param name="f">9.67</param>
             <param name="M">1.001</param>
-            <figure x="449" y="213" height="54" width="80" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="426" y="248" height="54" width="80" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -71,13 +71,13 @@
         </block>
         <block name="" id="49">
             <port id="50" name="u50" type="input">
-                <figure x="600" y="210" angle="0"/>
+                <figure x="600" y="245" angle="0"/>
             </port>
-            <param name="xGridInterval">2.0</param>
-            <param name="xMaximum">10.0</param>
+            <param name="xGridInterval">0.5</param>
+            <param name="xMaximum">2.0</param>
             <param name="xMinimum">0.0</param>
-            <param name="yGridInterval">0.1</param>
-            <param name="yMaximum">0.7000000000000001</param>
+            <param name="yGridInterval">0.02</param>
+            <param name="yMaximum">0.1</param>
             <param name="yMinimum">0.0</param>
             <param name="autoScale">true</param>
             <param name="axisLineWidth">1</param>
@@ -87,7 +87,7 @@
             <param name="lineNames[1]">y</param>
             <param name="lineWidth">1</param>
             <param name="title"></param>
-            <figure x="623" y="213" height="50" width="40" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="623" y="248" height="50" width="40" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -99,12 +99,12 @@
         </block>
         <block name="" id="130">
             <port id="131" name="y131" type="output">
-                <figure x="267" y="210" angle="0"/>
+                <figure x="242" y="245" angle="0"/>
             </port>
             <param name="delayTime">0.0</param>
             <param name="finalValue">1.0</param>
             <param name="initialValue">0.0</param>
-            <figure x="255" y="213" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="230" y="248" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -114,7 +114,7 @@
             </figure>
             <class>sources_step</class>
         </block>
-        <link to="50" from="124">
+        <link to="208" from="131">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
             <figure distance="50">
@@ -123,7 +123,7 @@
                 <auto>DEFAULT</auto>
             </figure>
         </link>
-        <link to="123" from="131">
+        <link to="50" from="209">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
             <figure distance="50">

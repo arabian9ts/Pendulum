@@ -32,7 +32,7 @@ public class StepCartSimulation {
 		// シミュレーションの条件設定と実行
 		RungeKuttaFehlberg solver = new RungeKuttaFehlberg();
 		solver.setAbsoluteTolerance(1.0E-5);
-		new SystemSolver(solver).solveAuto(system, 0.0, 5.0);
+		new SystemSolver(solver).solveAuto(system, 0.0, 1.0);
 		DoubleMatrix t = solver.getTimeSeries();
 		DoubleMatrix y = solver.getOutputSeries();
 		
