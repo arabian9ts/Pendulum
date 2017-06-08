@@ -1,10 +1,10 @@
 /*---------- solver func ----------*/
 Func Matrix vdpol(t,x,u)
-/* argments declaration */
+/* argments declarations */
 Real t;
 Matrix x,u;
 {
-  /* local declaration */
+  /* local declarations */
     Real m,l,J,c,a,c1,c2,g;
     Real th1,th2;
     Matrix dth;
@@ -20,12 +20,12 @@ Matrix x,u;
     u = [0.0];
 
     /* trans to matrix operation */
-    th1 = x(1,1);
-    th2 = x(2,1);
+    th1 = x(1);
+    th2 = x(2);
 
     /* operating differential */
-    dth = [[- c * th1 / (J + m * l * l) - m * g * l * th2 / (J + m * l *l ) ]
-          [                          th1                                  ]];
+    dth = [[                        th2                        ]
+           [  - c*th2 / (J + m*l*l) - m*g*l*th1 / (J + m*l*l)  ]];
 
     return dth;
 }
@@ -37,7 +37,6 @@ Func void main()
     /* local declaration */
     Matrix X,T,x0;
     Real t0,t1,h,dth0;
-    Matrix vdpol();
     Matrix data;
 
     /* plot process */
