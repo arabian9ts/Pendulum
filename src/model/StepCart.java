@@ -23,7 +23,7 @@ public class StepCart {
 		cartSystem.setInitialState(new DoubleMatrix(new double[]{0, 0}).transpose());
 		
 		// ステップ信号
-		StepSource stepSystem = new StepSource();
+		StepSource stepSystem = new StepSource(13.0);
 		
 		SystemBuilder cart = new SystemBuilder(cartSystem);
 		SystemBuilder step = new SystemBuilder(stepSystem);
