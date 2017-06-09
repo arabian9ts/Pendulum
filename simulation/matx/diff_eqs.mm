@@ -70,7 +70,7 @@ Matrix xx, u;
   u = [13.0];
 
   K = [[ M+m,      -m*l   ]
-     [ -m*l,    J+m*l*l ]];
+     [ -m*l,    J+m*l^2 ]];
 
   print K;
 
