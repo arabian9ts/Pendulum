@@ -19,31 +19,33 @@ Matrix xx, u;
 
   u = [0];
 
+
+  K=[[ M+m,           m*l*cos(xx(2)) ]
+     [ m*l*cos(xx(2)),    J+m*l*l    ]];
+
+  xxdot = [ [ xx(3) ]
+            [ xx(4) ]
+            [
+             (K~ * [[ a*u(1) + m*l*sin(xx(2)) * xx(4)^2 - f*xx(3) ]
+                    [           m*g*l*sin(xx(2)) - c*xx(4)          ]])
+            ]
+          ];
+
+
 /*
-  K=[[ M+m,           m*l*cos(xx(2)) ]
-     [ m*l*cos(xx(2)),    J+m*l*l    ]];
+  K=[[ M+m,           m*l ]
+     [ m*l,    J+m*l^2    ]];
+
+  print K;
 
   xxdot = [ [ xx(3) ]
             [ xx(4) ]
             [
-             (K~ * [[ a*u(1) + m*l*sin(xx(2)) * xx(4)^2 - f*xx(3) ]
-                    [           m*g*l*sin(xx(2)) - c*xx(4)          ]])
+             (K~ * [[ a*u(1) + m*l*xx(2) * xx(4)^2 - f*xx(3) ]
+                    [           m*g*l*xx(2) - c*xx(4)          ]])
             ]
           ];
-
-  K=[[ M+m,           m*l*cos(xx(2)) ]
-     [ m*l*cos(xx(2)),    J+m*l*l    ]];
-
 */
-
-  xxdot = [ [ xx(3) ]
-            [ xx(4) ]
-            [
-             (K~ * [[ a*u(1) + m*l*sin(xx(2)) * xx(4)^2 - f*xx(3) ]
-                    [           m*g*l*sin(xx(2)) - c*xx(4)          ]])
-            ]
-          ];
-
   return xxdot;
 }
 
@@ -58,36 +60,38 @@ Matrix xx, u;
 
   a = 0.49;
   m = 0.038;
-  M = 1.02;
+  M = 1.00;
   g = 9.8;
   l = 0.12;
-  f = 9.78;
-  c = 7.34e-5;
-  J = 3.7e-4;
+  f = 9.67;
+  c = 9.8e-5;
+  J = 3.9e-4;
 
-  u = [0];
+  u = [13.0];
 
-  K=[[ M+m,      -m*l   ]
+  K = [[ M+m,      -m*l   ]
      [ -m*l,    J+m*l*l ]];
 
-  /** inv(K) */
-  _K=K~;
+  print K;
 
-  tmp=_K*[[ 0,    0    ]
+  /** inv(K) */
+  _K = K~;
+
+  tmp = _K*[[ 0,    0    ]
           [ 0,  -m*g*l ]];
 
-  tmp2=_K*[[ -f,   0  ]
+  tmp2 = _K*[[ -f,   0  ]
            [  0,   -c ]];
 
-  A=[[ Z(2,2) I(2,2) ]
-     [ tmp    tmp2   ]];
-  // print A;
+  A = [[ Z(2,2) I(2,2) ]
+       [ tmp    tmp2   ]];
+   print A;
 
-  tmp3=_K*[[a] [0]];
-  B=trans([0 0 tmp3(1) tmp3(2)]);
-  // print B;
+  tmp3 = _K*[[a] [0]];
+  B = trans([0 0 tmp3(1) tmp3(2)]);
+  print B;
 
-  xxdot=A*xx+B*u;
+  xxdot = A*xx + B*u;
 
   return xxdot;
 }
@@ -107,9 +111,9 @@ Func void main()
 
   {T,X}=Ode(t0,t1,x0,diff_eqs_liner_under,"",h);
 
-  read data << "drop.mat";
+  read data << "restep13.mat";
 
   mgplot(1,T,X,{"r","th","dr","dth"});
-  mgreplot(1,data(1,:),data(4,:).-(data(4,1)-X(3,1)));
+  mgreplot(1,data(1,:),data(3,:));
   mgplot_eps(1,"nonliner.eps");
 }
