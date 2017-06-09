@@ -50,10 +50,27 @@ public class LinearPendulum extends ContinuousLinearDynamicSystem {
 	private LinearSystem createLinearSystem(){
 		final double m1 = this.pendulum.m;
 		
-		final Matrix a = new DoubleMatrix();
-		final Matrix b = new DoubleMatrix();
-		final Matrix c = new DoubleMatrix();
-		final Matrix d = new DoubleMatrix();
+		
+		final Matrix a = new DoubleMatrix(new double[][]{
+			{0, 0, 1, 0},
+			{0, 0, 0, 1},
+			{0, -0.214, -9.52, -0.00469},
+			{0, -48.7, -46.3, -0.107},
+		});
+		final Matrix b = new DoubleMatrix(new double[][]{
+			{0},
+			{0},
+			{0.482},
+			{2.35},
+		});
+		final Matrix c = new DoubleMatrix(new double[][]{
+			{this.pendulum.c1, 0, 0, 0},
+			{0, this.pendulum.c2, 0, 0},
+		});
+		final Matrix d = new DoubleMatrix(new double[][]{
+			{},
+			{},
+		});
 		
 		return LinearSystemFactory.createLinearSystem(a, b, c, d);
 		

@@ -25,7 +25,11 @@ public class Analyzer {
 	 * @param args コマンドライン引数
 	 */
 	public static void main(String[] args) {
-		Analyzer analizer = new Analyzer(new LinearPendulum().getLinearSystem());
+		Analyzer analyzer = new Analyzer(new LinearPendulum().getLinearSystem());
+		
+		analyzer.showControllability();
+		analyzer.showObservability();
+		
 	}
 	
 	/**
@@ -55,6 +59,9 @@ public class Analyzer {
 		final DoubleMatrix Nc = (DoubleMatrix)Ctrm.ctrm(A, B);
 		
 		// システムの可制御性行列のランクと可制御性判別結果を表示します
+		System.out.println("rank is "+Nc.rank()); //$NON-NLS-1$
+		if(Nc.isFullRank())
+			System.out.println("可制御である"); //$NON-NLS-1$
 		
 	}
 	
@@ -63,11 +70,13 @@ public class Analyzer {
 	 */
 	public void showObservability(){
 		final Matrix A = this.linearSystem.getA();
-		final Matrix B = this.linearSystem.getB();
-		final DoubleMatrix No = (DoubleMatrix)Obsm.obsm(A, B);
+		final Matrix C = this.linearSystem.getC();
+		final DoubleMatrix No = (DoubleMatrix)Obsm.obsm(A, C);
 		
 		// システムの可観測性行列のランクと可観測性判別結果を表示します
-		
+		System.out.println("rank is "+No.rank()); //$NON-NLS-1$
+		if(No.isFullRank())
+			System.out.println("可観測である"); //$NON-NLS-1$
 	}
 	
 }
