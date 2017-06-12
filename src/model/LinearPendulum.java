@@ -48,8 +48,6 @@ public class LinearPendulum extends ContinuousLinearDynamicSystem {
 	 * @return 線形システム
 	 */
 	private LinearSystem createLinearSystem(){
-		final double m1 = this.pendulum.m;
-		
 		
 		final Matrix a = new DoubleMatrix(new double[][]{
 			{0, 0, 1, 0},
