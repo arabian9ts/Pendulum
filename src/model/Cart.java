@@ -15,10 +15,10 @@ public class Cart extends BaseContinuousExplicitDynamicSystem {
 	// パラメータをフィールドとして定義します
 	/** 台車の質量 */
 	@Parameter(name="M", unit=SIunit.kg, description="台車の質量")
-	protected double M = 1.001;
+	protected double M = 1.51;
 	/** 台車の摩擦係数 */
 	@Parameter(name="f", unit={}, description="台車の摩擦係数")
-	protected double f = 9.67;
+	protected double f = 16.5;
 	/** 台車に加わる力の近似直線の傾き */
 	protected double a = 0.49;
 	
