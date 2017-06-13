@@ -1,35 +1,6 @@
 Real m,l,M,f,J,c,a,c1,c2,g;
 Matrix A, B, F, K, A21, A22, B2;
 
-Func void main()
-{
-Real t0, t1, r0 ,th0, tol;
-Matrix link_eqs_pole(), diff_eqs_linear();
-Matrix x0, T, X, U;
-
-m = 0.038;
-l = 0.12;
-M = 1.001;
-f = 9.67;
-J = 3.9e-4;
-c = 9.82e-5;
-a = 0.49;
-c1 = 1.0;
-c2 = 1.0;
-g = 9.8;
-
-t0 = 0.0;
-t1 = 5.0;
-r0 = 0.0;
-th0 = 10.0;
-x0 = [r0 th0/180*PI 0 0]';
-tol = 1.0E-8;
-
-{T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_linear, link_eqs_pole, tol);
-
-mgplot(1, T, X, {"r","th","dr","dth"});
-}
-
 Func Matrix link_eqs_pole(t, x)
 Matrix x;
 Real t;
@@ -79,4 +50,33 @@ B2=K\[[a][0]];
 B=[0 0 B2(1,1) B2(2,1)]';
 
 return A*x + B*u;
+}
+
+Func void main()
+{
+Real t0, t1, r0 ,th0, tol;
+Matrix link_eqs_pole(), diff_eqs_linear();
+Matrix x0, T, X, U;
+
+m = 0.038;
+l = 0.12;
+M = 1.001;
+f = 9.67;
+J = 3.9e-4;
+c = 9.82e-5;
+a = 0.49;
+c1 = 1.0;
+c2 = 1.0;
+g = 9.8;
+
+t0 = 0.0;
+t1 = 5.0;
+r0 = 0.0;
+th0 = 10.0;
+x0 = [r0 th0/180*PI 0 0]';
+tol = 1.0E-8;
+
+{T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_linear, link_eqs_pole, tol);
+
+mgplot(1, T, X, {"r","th","dr","dth"});
 }
