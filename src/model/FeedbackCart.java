@@ -26,7 +26,7 @@ public class FeedbackCart {
 		
 		Saturation saturationSystem = new Saturation(-15, 15);
 		
-		ConstantSystem gainSystem = new ConstantSystem(new DoubleMatrix(new double[]{1000}));
+		ConstantSystem gainSystem = new ConstantSystem(new DoubleMatrix(new double[]{2500}));
 		
 		StepSource stepSystem = new StepSource(0.15);
 		
