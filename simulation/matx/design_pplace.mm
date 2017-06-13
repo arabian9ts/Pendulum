@@ -1,5 +1,21 @@
-Real m,l,M,f,J,c,a,c1,c2,g;
-Matrix A, B, F, K, A21, A22, B2;
+Real m;
+Real l;
+Real f;
+Real M;
+Real f;
+Real J;
+Real c;
+Real a;
+Real c1;
+Real c2;
+Real g;
+Matrix A;
+Matrix B;
+Matrix F;
+Matrix K;
+Matrix A21;
+Matrix A22;
+Matrix B2;
 
 Func Matrix link_eqs_pole(t, x)
 Matrix x;
@@ -35,6 +51,7 @@ Matrix x,u;
 
 Func void main()
 {
+
   Real t0, t1, r0 ,th0, tol;
   Matrix link_eqs_pole(), diff_eqs_linear();
   Matrix x0, T, X, U;
@@ -71,7 +88,7 @@ Func void main()
   B2=K\[[a][0]];
   B=[0 0 B2(1,1) B2(2,1)]';
 
-  pc = [(-2,0), (-2,0), (-1,0), (-1,0)]';
+  pc = [(-6,0), (-8,0), (-8,0), (-10,0)]';
   F  = pplace(A, B, pc);
 
 {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_linear, link_eqs_pole, tol);
