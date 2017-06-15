@@ -1,4 +1,7 @@
 bin/
 .setting
+.classpath
+.project
 .DS_Store
+.matx_history
 simulation/matx/.matx_history
