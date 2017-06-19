@@ -28,7 +28,7 @@ public class ObserverStateFeedbackPendulum {
 	 */
 	public static SystemOperator getInstance(ConstantSystem stateFeedbackSystem){
 		Pendulum pendulumSystem = new Pendulum();
-		pendulumSystem.setInitialState(new DoubleMatrix(new double[]{4, 1}));
+		pendulumSystem.setInitialState(new DoubleMatrix(4, 1));
 		
 		Saturation saturationSystem = new Saturation(-15, 15);
 		
@@ -50,8 +50,8 @@ public class ObserverStateFeedbackPendulum {
 		ConstantSystem k2System = new ConstantSystem(new DoubleMatrix(new double[][]{
 			{0, 0},
 			{1, 0},
-			{0, 1}
-			}));
+			{0, 1}}
+		));
 		
 		// k3
 		ConstantSystem k3System = new ConstantSystem(DoubleMatrix.unit(3));
