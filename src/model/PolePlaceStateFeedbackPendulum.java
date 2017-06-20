@@ -5,7 +5,7 @@ import org.mklab.nfc.matrix.Matrix;
 import org.mklab.tool.control.system.SystemOperator;
 
 /**
- * 倒立振子の(極配置に基づく状態フィードバック+離散時間オブザーバ)による安定化制御のシステムを生成するクラスです
+ * 倒立振子の極配置に基づく状態フィードバックによる安定化制御のシステムを生成するクラスです
  * 
  * @author arabian9ts
  *
