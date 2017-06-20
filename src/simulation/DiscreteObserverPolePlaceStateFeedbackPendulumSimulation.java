@@ -30,7 +30,7 @@ public class DiscreteObserverPolePlaceStateFeedbackPendulumSimulation {
 		SystemOperator system = DiscreteObserverPolePlaceFeedbackPendulum.getInstance();
 		
 		RungeKuttaFehlberg solver = new RungeKuttaFehlberg();
-		solver.getAbsoluteTolerance(1.0E-8);
+		solver.setAbsoluteTolerance(1.0E-8);
 		solver.setMinimumSavingInterval(0.1);
 		solver.setSaveAtSamplingPoint(true);
 		
