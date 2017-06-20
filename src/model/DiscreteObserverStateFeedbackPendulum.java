@@ -18,7 +18,7 @@ public class DiscreteObserverStateFeedbackPendulum {
 	
 	/**
 	 * 倒立振子の(状態フィードバック+離散時間オブザーバ)による安定化制御のシステムを返します
-	 * @param stateFeedbackSystem　状態フィードバック
+	 * @param stateFeedbackSystem 状態フィードバック
 	 * @return 倒立振子の(状態フィードバック+離散時間オブザーバ)による安定化制御のシステム
 	 */
 	public static SystemOperator getInstance(ConstantSystem stateFeedbackSystem){
