@@ -21,7 +21,7 @@ import model.pattern2.ObserverLqrStateFeedbackPendulum;
  */
 public class ObserverLqrStateFeedbackSimulation {
 	/**
-	 * シミュレーション系sなんを実行し、結果をグラフ表示します
+	 * シミュレーション計算を実行し、結果をグラフ表示します
 	 * 
 	 * @param args コマンドライン引数
 	 * @throws InterruptedException 強制終了された場合

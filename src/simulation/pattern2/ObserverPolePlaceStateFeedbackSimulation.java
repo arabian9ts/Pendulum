@@ -13,7 +13,7 @@ import org.mklab.tool.graph.gnuplot.Gnuplot;
 import model.pattern2.ObserverPolePlaceStateFeedbackPendulum;
 
 /**
- * 倒立振子の(LQ最適制御に基づく状態フィードバック+連続時間オブザーバ)
+ * 倒立振子の(極配置に基づく状態フィードバック+連続時間オブザーバ)
  * による安定化制御のシミュレーションを実行するクラスです
  * 
  * @author arabian9ts
@@ -22,7 +22,7 @@ import model.pattern2.ObserverPolePlaceStateFeedbackPendulum;
 public class ObserverPolePlaceStateFeedbackSimulation {
 
 	/**
-	 * シミュレーション系sなんを実行し、結果をグラフ表示します
+	 * シミュレーション計算を実行し、結果をグラフ表示します
 	 * 
 	 * @param args コマンドライン引数
 	 * @throws InterruptedException 強制終了された場合
@@ -32,7 +32,6 @@ public class ObserverPolePlaceStateFeedbackSimulation {
 		
 		// シミュレーション対象
 		SystemOperator system = ObserverPolePlaceStateFeedbackPendulum.getInstance();
-//		SystemOperator system = ObserverLqrStateFeedbackPendulum.getInstance();
 		
 		
 		// シミュレーション条件の設定と実行
