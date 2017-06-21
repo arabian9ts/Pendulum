@@ -1,4 +1,4 @@
-package model;
+package model.pattern3;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.tool.control.system.SystemBuilder;
@@ -7,6 +7,8 @@ import org.mklab.tool.control.system.discontinuous.Saturation;
 import org.mklab.tool.control.system.discrete.ZeroOrderHoldSystem;
 import org.mklab.tool.control.system.math.ConstantSystem;
 import org.mklab.tool.control.system.source.PulseSource;
+
+import model.Pendulum;
 
 /**
  * 倒立振子の(状態フィードバック+離散時間オブザーバ)による安定化制御のシステムを表すクラスです

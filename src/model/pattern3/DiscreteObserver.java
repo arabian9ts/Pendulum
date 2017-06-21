@@ -1,6 +1,8 @@
-package model;
+package model.pattern3;
 
 import org.mklab.nfc.matrix.DoubleComplexMatrix;
+
+import model.LinearPendulum;
 
 /**
  * (1重)倒立振子のりサン時間オブザーバを表すクラスです

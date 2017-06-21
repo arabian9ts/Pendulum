@@ -1,8 +1,10 @@
-package model;
+package model.pattern1;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.misc.DiagonalMatrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.LinearPendulum;
 
 /**
  * 倒立振子のLQ最適制御(安定化)のための状態フィードバック

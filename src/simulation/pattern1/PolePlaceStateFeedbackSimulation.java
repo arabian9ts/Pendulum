@@ -1,4 +1,4 @@
-package simulation;
+package simulation.pattern1;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.mklab.tool.control.system.SystemSolver;
 import org.mklab.tool.graph.gnuplot.Canvas;
 import org.mklab.tool.graph.gnuplot.Gnuplot;
 
-import model.PolePlaceStateFeedbackPendulum;
+import model.pattern1.PolePlaceStateFeedbackPendulum;
 
 /**
  * 倒立振子の極配置に基づく状態フィードバックによる安定化制御のシミュレーションを実行するクラスです

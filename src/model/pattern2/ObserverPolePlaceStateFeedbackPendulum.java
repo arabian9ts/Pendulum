@@ -1,8 +1,10 @@
-package model;
+package model.pattern2;
 
 import org.mklab.nfc.matrix.DoubleComplexMatrix;
 import org.mklab.nfc.matrix.Matrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.pattern1.PolePlaceStateFeedback;
 
 /**
  * 倒立振子の(極配置に基づく状態フィードバック+連続時間オブザーバ)

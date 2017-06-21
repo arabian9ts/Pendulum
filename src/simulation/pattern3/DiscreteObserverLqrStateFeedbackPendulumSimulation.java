@@ -1,4 +1,4 @@
-package simulation;
+package simulation.pattern3;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.mklab.tool.control.system.SystemSolver;
 import org.mklab.tool.graph.gnuplot.Canvas;
 import org.mklab.tool.graph.gnuplot.Gnuplot;
 
-import model.DiscreteObserverLQRStateFeedbackPendulum;
+import model.pattern3.DiscreteObserverLQRStateFeedbackPendulum;
 
 /**
  * 倒立振子の(LQR最適制御に基づく状態フィードバック+離散時間オブザーバ)による安定化制御のシミュレーションを実行するクラスです

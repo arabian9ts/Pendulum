@@ -1,7 +1,9 @@
-package model;
+package model.pattern1;
 
 import org.mklab.nfc.matrix.DoubleComplexMatrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.LinearPendulum;
 
 /**
  * 倒立振子の極配置による安定化制御のための状態フィードバック

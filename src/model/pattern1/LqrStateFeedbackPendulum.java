@@ -1,8 +1,10 @@
-package model;
+package model.pattern1;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.nfc.matrix.misc.DiagonalMatrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.StateFeedbackPendulum;
 
 /**
  * 倒立振子のLQR最適制御に基づく状態フィードバックによる安定化制御のシステムを生成するクラスです

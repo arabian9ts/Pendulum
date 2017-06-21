@@ -1,7 +1,9 @@
-package model;
+package model.pattern2;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.pattern1.LqrStateFeedback;
 
 /**
  * 倒立振子の(LQ最適制御に基づく状態フィードバック+連続時間オブザーバ)による

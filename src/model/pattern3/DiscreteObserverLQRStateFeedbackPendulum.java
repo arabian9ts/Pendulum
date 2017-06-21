@@ -1,7 +1,9 @@
-package model;
+package model.pattern3;
 
 import org.mklab.nfc.matrix.DoubleMatrix;
 import org.mklab.tool.control.system.SystemOperator;
+
+import model.pattern1.LqrStateFeedback;
 
 /**
  * 倒立振子の(LQR最適制御に基づく状態フィードバック+離散時間オブザーバ)による安定化制御のシステムを生成するクラスです
