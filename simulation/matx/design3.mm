@@ -1,6 +1,8 @@
 read <- "params";
 Real r, th, dr, dth;
 Matrix  A, B, C, F, K, Ah, Bh, Ch, Dh, Jh;
+Matrix Ahd, Bhd, Jhd, Hhd;
+Matrix z;
 CoMatrix obs_p;
 
 Func void init()
@@ -28,11 +30,11 @@ Func void init()
 
 }
 
-Func Matrix link_eqs_obs(t, x)
+Func Matrix link_eqs_discretion(t, x)
 Matrix x;
 Real t;
 {
-  Matrix xp, xh, z, u, y, xref;
+  Matrix xp, xh, u, y, xref;
 
   xp = x(1:4,1);    // 倒立振子の状態
   z = x(5:6,1);     // オブザーバの状態
@@ -64,18 +66,20 @@ Real t;
       u(1,1) = 15;
   }
 
+  z = Ahd*z + Bhd*y + Jhd*u; // オブザーバの状態の更新
+
   return u;
 }
 
 
-Func Matrix diff_eqs_obs(t,x,u)
+Func Matrix diff_eqs_discretion(t,x,u)
 Real t;
 Matrix x,u;
 {
-  Matrix xp, y, z, dx, dxp, dz;
+  Matrix xp, y, dx, dxp, dz;
 
   xp = x(1:4,1);    // 倒立振子の状態
-  z = x(5:6,1);     // オブザーバの状態
+  //z = x(5:6,1);     // オブザーバの状態
   y = C*xp;         // 出力の計算
 
   r = xp(1,1);
@@ -99,7 +103,7 @@ Matrix x,u;
 Func void main()
 {
 
-  Real t0, t1, r0 ,th0, tol;
+  Real t0, t1, r0 ,th0, tol, dt, dtsav;
   Matrix xp0, z0, x0, T, X, U;
 
   t0 = 0.0;
@@ -109,11 +113,17 @@ Func void main()
   xp0 = [r0 th0/180*PI 0 0]';
   z0 = [0 0]';
   x0 = [[xp0][z0]];
+  dt = 0.005; // サンプリング周期
+  dtsav = 0.05; // データ保存間隔
   tol = 1.0E-14;
 
   init();
   {Ah, Bh, Ch, Dh, Jh} = obsg(A, B, C, obs_p);
-  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_obs, link_eqs_obs, tol);
+  {Ahd, Hhd} = c2d(Ah, [Bh Jh], dt);
+  Bhd = Hhd(:,1:2);
+  Jhd = Hhd(:,3);
+
+  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_discretion, link_eqs_discretion, tol, dtsav);
 
   mgplot(1, T, X(1:2,:), {"r","th"});
   mgplot(2, T, U, {"u"});
