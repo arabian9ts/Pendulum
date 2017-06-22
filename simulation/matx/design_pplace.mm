@@ -1,10 +1,10 @@
 read <- "params";
-Matrix A, B, F;
+Matrix F;
 
 
 Func void init()
 {
-  Matrix K, A21, A22, B2;
+  Matrix K, A21, A22, B2, A, B;
   CoMatrix pc;
 
   K = [[M+m ,m*l]
@@ -19,13 +19,14 @@ Func void init()
 
   pc = [(-10,0), (-10,0), (-5,0), (-5,0)]';
   F  = pplace(A, B, pc);
+  read F;
 }
 
 Func Matrix link_eqs_pole(t, x)
 Matrix x;
 Real t;
 {
-  Matrix u, xref;
+  Matrix A, B, u, xref;
 
   // 台車の可動範囲に関する制限
 	if (x(1,1) <= -0.16 || 0.16 <= x(1,1)) { // r = x(1,1)
@@ -46,11 +47,25 @@ Real t;
 }
 
 
-Func Matrix diff_eqs_linear(t,x,u)
+Func Matrix diff_eqs_pole(t,x,u)
 Real t;
 Matrix x,u;
 {
-  return A*x + B*u;
+  Real r, th, dr, dth;
+  Matrix dx, K;
+  r = x(1,1);
+  th = x(2,1);
+  dr = x(3,1);
+  dth = x(4,1);
+
+  K = [[M+m ,m*l*cos(th)]
+       [m*l*cos(th), J+m*l^2]];
+
+  A = [[-f*dr + m*l*sin(th)*dth^2+a*u(1,1)]
+       [m*g*l*sin(th) - c*dth]];
+  B = K\A;
+  dx = [dr dth B(1,1) B(2,1)]';
+  return dx;
 }
 
 Func void main()
@@ -68,7 +83,7 @@ Func void main()
 
   init();
 
-  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_linear, link_eqs_pole, tol);
+  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_pole, link_eqs_pole, tol);
 
   mgplot(1, T, X, {"r","th","dr","dth"});
   mgreplot(1, T, U, {"u"});

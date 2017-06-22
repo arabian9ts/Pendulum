@@ -39,7 +39,7 @@ Real t;
 
   // 台車の可動範囲に関する制限
 	if (x(1,1) <= -0.16 || 0.16 <= x(1,1)) { // r = x(1,1)
-        OdeStop();	                         // シミュレーションを停止
+    //OdeStop();	             // シミュレーションを停止
   }
 
   y = C*xp;
@@ -105,16 +105,16 @@ Func void main()
   t0 = 0.0;
   t1 = 15.0;
   r0 = 0.0;
-  th0 = 10.0;
+  th0 = 0.0;
   xp0 = [r0 th0/180*PI 0 0]';
   z0 = [0 0]';
   x0 = [[xp0][z0]];
-  tol = 1.0E-13;
+  tol = 1.0E-14;
 
   init();
   {Ah, Bh, Ch, Dh, Jh} = obsg(A, B, C, obs_p);
   {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_obs, link_eqs_obs, tol);
 
-  mgplot(1, T, X, {"r","th","dr","dth"});
-  mgreplot(1, T, U, {"u"});
+  mgplot(1, T, X(1:2,:), {"r","th"});
+  mgplot(2, T, U, {"u"});
 }

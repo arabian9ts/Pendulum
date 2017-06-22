@@ -1,10 +1,10 @@
 read <- "params";
-Matrix A, B, F;
+Matrix F;
 
 
 Func void init()
 {
-  Matrix K, A21, A22, B2, Q, R, P;
+  Matrix A, B, K, A21, A22, B2, Q, R, P;
 
   K = [[M+m ,m*l]
        [m*l, J+m*l^2]];
@@ -47,11 +47,25 @@ Real t;
 }
 
 
-Func Matrix diff_eqs_linear(t,x,u)
+Func Matrix diff_eqs_lqr(t,x,u)
 Real t;
 Matrix x,u;
 {
-  return A*x + B*u;
+  Real r, th, dr, dth;
+  Matrix dx, K;
+  r = x(1,1);
+  th = x(2,1);
+  dr = x(3,1);
+  dth = x(4,1);
+
+  K = [[M+m ,m*l*cos(th)]
+       [m*l*cos(th), J+m*l^2]];
+
+  A = [[-f*dr + m*l*sin(th)*dth^2+a*u(1,1)]
+       [m*g*l*sin(th) - c*dth]];
+  B = K\A;
+  dx = [dr dth B(1,1) B(2,1)]';
+  return dx;
 }
 
 Func void main()
@@ -69,7 +83,7 @@ Func void main()
 
   init();
 
-  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_linear, link_eqs_lqr, tol);
+  {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_lqr, link_eqs_lqr, tol);
 
   mgplot(1, T, X, {"r","th","dr","dth"});
   mgreplot(1, T, U, {"u"});
