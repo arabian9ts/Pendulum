@@ -132,15 +132,23 @@
             </figure>
             <class>math_constant</class>
         </block>
-        <block name="" id="103">
+        <block name="FullStatePendulum" id="103">
             <port id="104" name="u104" type="input">
                 <figure x="589" y="292" angle="0"/>
             </port>
             <port id="105" name="y105" type="output">
                 <figure x="669" y="292" angle="0"/>
             </port>
-            <param name="class_name"></param>
-            <param name="initial_state">[0]'</param>
+            <param name="class_name">model.FullStatePendulum</param>
+            <param name="initial_state">[0 0 0 0]'</param>
+            <param name="a">0.05</param>
+            <param name="c">9.8E-5</param>
+            <param name="f">9.67</param>
+            <param name="g">9.8</param>
+            <param name="J">3.9E-4</param>
+            <param name="l">0.12</param>
+            <param name="M">1.0</param>
+            <param name="m">0.038</param>
             <figure x="632" y="295" height="54" width="80" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
@@ -151,14 +159,16 @@
             </figure>
             <class>continuous_dynamic_system</class>
         </block>
-        <block name="" id="107">
+        <block name="
+PolePlaceStateFeedback" id="107">
             <port id="108" name="u108" type="input">
                 <figure x="359" y="292" angle="0"/>
             </port>
             <port id="109" name="y109" type="output">
                 <figure x="424" y="292" angle="0"/>
             </port>
-            <param name="class_name"></param>
+            <param name="class_name">model.pattern1.PolePlaceStateFeedback</param>
+            <param name="closedLoopPoles">[( -1.00000000E+00,0),( -1.00000000E+00,0),%n ( -2.00000000E+00,0),( -2.00000000E+00,0)]'</param>
             <figure x="394" y="295" height="40" width="65" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
@@ -173,6 +183,12 @@
             <port id="158" name="u158" type="input">
                 <figure x="954" y="213" angle="0"/>
             </port>
+            <param name="xGridInterval">2.0</param>
+            <param name="xMaximum">10.0</param>
+            <param name="xMinimum">0.0</param>
+            <param name="yGridInterval">1.0</param>
+            <param name="yMaximum">1.0</param>
+            <param name="yMinimum">-6.0</param>
             <param name="autoScale">true</param>
             <param name="axisLineWidth">1</param>
             <param name="exportable">true</param>
@@ -180,12 +196,6 @@
             <param name="grid">true</param>
             <param name="lineWidth">1</param>
             <param name="title"></param>
-            <param name="xGridInterval">0.0</param>
-            <param name="xMaximum">0.0</param>
-            <param name="xMinimum">0.0</param>
-            <param name="yGridInterval">0.0</param>
-            <param name="yMaximum">0.0</param>
-            <param name="yMinimum">0.0</param>
             <figure x="977" y="216" height="50" width="40" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
