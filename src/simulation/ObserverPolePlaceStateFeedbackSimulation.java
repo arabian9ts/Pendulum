@@ -11,6 +11,7 @@ import org.mklab.tool.graph.gnuplot.Canvas;
 import org.mklab.tool.graph.gnuplot.Gnuplot;
 
 import model.ObserverLqrStateFeedbackPendulum;
+import model.ObserverPolePlaceStateFeedbackPendulum;
 
 /**
  * 倒立振子の(LQ最適制御に基づく状態フィードバック+連続時間オブザーバ)
@@ -31,8 +32,8 @@ public class ObserverPolePlaceStateFeedbackSimulation {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		// シミュレーション対象
-//		SystemOperator system = ObserverPolePlaceStateFeedbackPendulum.getInstance();
-		SystemOperator system = ObserverLqrStateFeedbackPendulum.getInstance();
+		SystemOperator system = ObserverPolePlaceStateFeedbackPendulum.getInstance();
+//		SystemOperator system = ObserverLqrStateFeedbackPendulum.getInstance();
 		
 		
 		// シミュレーション条件の設定と実行

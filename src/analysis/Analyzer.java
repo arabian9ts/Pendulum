@@ -14,7 +14,7 @@ import model.LinearPendulum;
  *
  */
 public class Analyzer {
-	
+		
 	/**
 	 * 線形システム
 	 */

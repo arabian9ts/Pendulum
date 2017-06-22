@@ -22,7 +22,7 @@ public class StateFeedbackPendulum {
 	public static SystemOperator getInstance(ConstantSystem stateFeedbackSystem){
 		
 		FullStatePendulum pendulumSystem = new FullStatePendulum();
-		pendulumSystem.setInitialState(new DoubleMatrix(new double[]{0, 0, 0, 0}).transpose());
+		pendulumSystem.setInitialState(new DoubleMatrix(new double[]{0, 10.0/180*Math.PI, 0, 0}).transpose());
 		
 		Saturation saturationSystem = new Saturation(-15, 15);
 		PulseSource referenceSystem = new PulseSource(0.1, 10, 50);
