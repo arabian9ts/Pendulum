@@ -1,4 +1,4 @@
-package model;
+package model.pattern2;
 
 import org.mklab.nfc.matrix.DoubleComplexMatrix;
 import org.mklab.nfc.matrix.DoubleMatrix;
@@ -9,6 +9,9 @@ import org.mklab.tool.control.system.controller.ContinuousObserver;
 import org.mklab.tool.control.system.discontinuous.Saturation;
 import org.mklab.tool.control.system.math.ConstantSystem;
 import org.mklab.tool.control.system.source.PulseSource;
+
+import model.LinearPendulum;
+import model.Pendulum;
 
 /**
  * 倒立振子(状態フィードバック+連続時間オブザーバ)による

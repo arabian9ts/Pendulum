@@ -1,4 +1,4 @@
-package design;
+package model.pattern2;
 
 import org.mklab.nfc.matrix.DoubleComplexMatrix;
 
