@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bdml version="0.9.2.5">
+    <system name="DiscreteObserverPolePlaceStateFeedbackMaTX.jamox">
+        <parameters name="simulationParameter">
+            <param name="startTime">0.0</param>
+            <param name="endTime">15.0</param>
+            <param name="minimumSavingInterval">0.001</param>
+            <param name="solverType">org.mklab.nfc.ode.RungeKuttaFehlberg</param>
+            <param name="absoluteTolerance">1.0E-14</param>
+            <param name="relativeTolerance">1.0E-6</param>
+            <param name="initStepSize">1.0E-6</param>
+            <param name="timeStep">0.04</param>
+            <param name="maximumTimeStep">0.1</param>
+            <param name="minimumTimeStep">2.220446049250313E-16</param>
+            <param name="saveAtSamplingPoint">true</param>
+            <param name="saveAtDiscontinuousPoint">true</param>
+            <param name="toleranceOfDiscontinuity">1.0E-10</param>
+        </parameters>
+        <parameters name="bodePlotParameter">
+            <param name="frequencyDataSize">0</param>
+            <param name="frequencyMaxPower">0.0</param>
+            <param name="frequencyMinPower">0.0</param>
+            <param name="gridOn">true</param>
+            <param name="fontSize">0</param>
+            <param name="needRecalc">true</param>
+            <param name="frequencyGridIntervalPower">0.0</param>
+            <param name="gainGridInterval">0.0</param>
+            <param name="gainMaximum">0.0</param>
+            <param name="gainMinimum">0.0</param>
+            <param name="phaseGridInterval">0.0</param>
+            <param name="phaseMaximum">0.0</param>
+            <param name="phaseMinimum">0.0</param>
+        </parameters>
+        <parameters name="nyquistPlotParameter">
+            <param name="frequencyDataSize">0</param>
+            <param name="frequencyMaxPower">0.0</param>
+            <param name="frequencyMinPower">0.0</param>
+            <param name="gridOn">true</param>
+            <param name="fontSize">0</param>
+            <param name="needRecalc">true</param>
+            <param name="realGridInterval">0.0</param>
+            <param name="realMaximum">0.0</param>
+            <param name="realMinimum">0.0</param>
+            <param name="imaginaryGridInterval">0.0</param>
+            <param name="imaginaryMaximum">0.0</param>
+            <param name="imaginaryMinimum">0.0</param>
+            <param name="drawingForNegativeFrequency">true</param>
+            <param name="drawingForPositiveFrequency">true</param>
+            <param name="drawingUnitCircle">true</param>
+        </parameters>
+        <block name="" id="277">
+            <port id="278" name="u164" type="input">
+                <figure x="148" y="398" angle="0"/>
+            </port>
+            <port id="279" name="y165" type="output">
+                <figure x="158" y="398" angle="0"/>
+            </port>
+            <port id="280" name="y166" type="output">
+                <figure x="153" y="393" angle="270"/>
+            </port>
+            <figure x="156" y="401" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="289">
+            <port id="290" name="u175" type="input">
+                <figure x="1081" y="397" angle="0"/>
+            </port>
+            <port id="291" name="y176" type="output">
+                <figure x="1086" y="392" angle="270"/>
+            </port>
+            <port id="292" name="y177" type="output">
+                <figure x="1086" y="402" angle="90"/>
+            </port>
+            <figure x="1089" y="400" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="301">
+            <port id="302" name="u658" type="input">
+                <figure x="1105" y="731" angle="0"/>
+            </port>
+            <port id="303" name="y659" type="output">
+                <figure x="1115" y="731" angle="0"/>
+            </port>
+            <port id="304" name="y660" type="output">
+                <figure x="1110" y="736" angle="90"/>
+            </port>
+            <figure x="1113" y="734" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="313">
+            <port id="314" name="u921" type="input">
+                <figure x="699" y="397" angle="0"/>
+            </port>
+            <port id="315" name="y922" type="output">
+                <figure x="709" y="397" angle="0"/>
+            </port>
+            <port id="316" name="y923" type="output">
+                <figure x="704" y="402" angle="90"/>
+            </port>
+            <figure x="707" y="400" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="325">
+            <port id="326" name="u983" type="input">
+                <figure x="1055" y="479" angle="180"/>
+            </port>
+            <port id="327" name="y984" type="output">
+                <figure x="1050" y="484" angle="90"/>
+            </port>
+            <port id="328" name="y985" type="output">
+                <figure x="1050" y="484" angle="90"/>
+            </port>
+            <figure x="1053" y="482" height="10" width="10" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="337">
+            <port id="338" name="u120" type="input">
+                <figure x="182" y="398" angle="0"/>
+            </port>
+            <port id="339" name="y121" type="output">
+                <figure x="315" y="398" angle="0"/>
+            </port>
+            <param name="constant_matrix">[1 0 0 0]'</param>
+            <param name="tag_name">I</param>
+            <param name="is_variable">false</param>
+            <figure x="251" y="401" height="40" width="133" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="omitted">false</param>
+            </figure>
+            <class>math_constant</class>
+        </block>
+        <block name="" id="344">
+            <port id="345" name="u120" type="input">
+                <figure x="205" y="732" angle="0"/>
+            </port>
+            <port id="346" name="y121" type="output">
+                <figure x="338" y="732" angle="0"/>
+            </port>
+            <param name="constant_matrix">[1 0 0 0]'</param>
+            <param name="tag_name">I</param>
+            <param name="is_variable">false</param>
+            <figure x="274" y="735" height="40" width="133" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="omitted">false</param>
+            </figure>
+            <class>math_constant</class>
+        </block>
+        <block name="" id="351">
+            <port id="352" name="y626" type="output">
+                <figure x="159" y="732" angle="0"/>
+            </port>
+            <param name="input_number">1</param>
+            <param name="tag_name">u1</param>
+            <figure x="129" y="735" height="48" width="65" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sources_input</class>
+        </block>
+        <block name="" id="356">
+            <port id="357" name="u51" type="input">
+                <figure x="1353" y="247" angle="0"/>
+            </port>
+            <param name="xGridInterval">3.0</param>
+            <param name="xMaximum">15.0</param>
+            <param name="xMinimum">0.0</param>
+            <param name="yGridInterval">0.04</param>
+            <param name="yMaximum">0.12</param>
+            <param name="yMinimum">-0.08</param>
+            <param name="autoScale">true</param>
+            <param name="axisLineWidth">1</param>
+            <param name="exportable">true</param>
+            <param name="fontSize">11</param>
+            <param name="grid">true</param>
+            <param name="lineWidth">1</param>
+            <param name="title"></param>
+            <figure x="1385" y="250" height="58" width="58" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sinks_jpit2</class>
+        </block>
+        <block name="Pendulum" id="361">
+            <port id="362" name="u34" type="input">
+                <figure x="894" y="397" angle="0"/>
+            </port>
+            <port id="363" name="y35" type="output">
+                <figure x="1049" y="397" angle="0"/>
+            </port>
+            <param name="input_size">1</param>
+            <param name="output_size">2</param>
+            <param name="state_size">4</param>
+            <param name="time_variable">t</param>
+            <param name="input_variable">u</param>
+            <param name="output_variable">y</param>
+            <param name="state_variable">x</param>
+            <param name="initial_state">[0 0 0 0]'</param>
+            <param name="has_direct_feedthrough">true</param>
+            <param name="parameters">Real a,M,l,m,g,c,J,f;</param>
+            <param name="update_function">a = 0.49;%nM = 1.00;%nl = 0.12;%nm = 0.038;%ng = 9.8;%nc = 9.82E-5;%nJ = 3.9E-4;%nf = 9.67;</param>
+            <param name="state_equation_function">Matrix K, F;%nReal r, th, dr, dth;%n%nr = x(1,1);%nth = x(2,1);%ndr = x(3,1);%ndth = x(4,1);%n%nK = [[M + m , m*l*cos(th)]%n	 [m*l*cos(th), J+m*l*l]];%n	%nF = [[-f*dr+m*l*sin(th)*dth*dth+a*u(1,1)]%n	[m*g*l*sin(th) - c*dth]];%n	%ndx = [[x(3:4,1)][K\F]];</param>
+            <param name="output_equation_function">y = x(1:2,1);</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <figure x="974" y="400" height="102" width="155" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>continuous_matx_dynamic_system</class>
+        </block>
+        <block name="" id="368">
+            <port id="369" name="u28" type="input">
+                <figure x="1249" y="240" angle="0"/>
+            </port>
+            <port id="370" name="u29" type="input">
+                <figure x="1249" y="254" angle="0"/>
+            </port>
+            <port id="371" name="y30" type="output">
+                <figure x="1269" y="247" angle="0"/>
+            </port>
+            <figure x="1262" y="250" height="40" width="20" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>routing_mux</class>
+        </block>
+        <block name="" id="380">
+            <port id="381" name="u696" type="input">
+                <figure x="1218" y="731" angle="0"/>
+            </port>
+            <param name="output_number">1</param>
+            <param name="tag_name">y1</param>
+            <figure x="1263" y="734" height="48" width="85" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sinks_output</class>
+        </block>
+        <block name="" id="385">
+            <port id="386" name="y81" type="output">
+                <figure x="118" y="398" angle="0"/>
+            </port>
+            <param name="amplitude">0.1</param>
+            <param name="offset">0.0</param>
+            <param name="period">10.0</param>
+            <param name="phaseDelay">0.0</param>
+            <param name="pulseWidth">50.0</param>
+            <figure x="106" y="401" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sources_pulse</class>
+        </block>
+        <block name="飽和器" id="390">
+            <port id="391" name="u152" type="input">
+                <figure x="637" y="397" angle="0"/>
+            </port>
+            <port id="392" name="y153" type="output">
+                <figure x="667" y="397" angle="0"/>
+            </port>
+            <param name="maximum">15.0</param>
+            <param name="minimum">-15.0</param>
+            <figure x="655" y="400" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>discontinuous_saturation</class>
+        </block>
+        <block name="" id="397">
+            <port id="398" name="u184" type="input">
+                <figure x="347" y="397" angle="0"/>
+            </port>
+            <port id="399" name="u185" type="input">
+                <figure x="354" y="405" angle="270"/>
+            </port>
+            <port id="400" name="y186" type="output">
+                <figure x="362" y="397" angle="0"/>
+            </port>
+            <param name="operation_list">+-</param>
+            <figure x="357" y="400" height="15" width="15" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>math_sum</class>
+        </block>
+        <block name="Plant" id="409">
+            <port id="410" name="u129" type="input">
+                <figure x="941" y="731" angle="0"/>
+            </port>
+            <port id="411" name="y130" type="output">
+                <figure x="1048" y="731" angle="0"/>
+            </port>
+            <param name="a_variable">A</param>
+            <param name="b_variable">B</param>
+            <param name="c_variable">C</param>
+            <param name="d_variable">D</param>
+            <param name="initial_state">[0 0.0/180*PI 0 0]'</param>
+            <param name="parameters"></param>
+            <param name="update_function">Real M, l, f, J, a, g, m, c, c1, c2; %nMatrix A21, A22, B2, K;%n%nM = Pendulum.M;%nl = Pendulum.l;%nf = Pendulum.f;%nJ = Pendulum.J;%na = Pendulum.a;%ng = Pendulum.g;%nm = Pendulum.m;%nc = Pendulum.c;%nc1 = 1.0;%nc2 = 1.0;%n%nK = [[M+m ,m*l]%n       [m*l, J+m*l^2]];%n%nA21=K\[[0, 0][0, m*g*l]];%nA22=K\[[-f, 0][0, -c]];%n%nA  = [[Z(2,2), I(2,2)]%n     [ A21   , A22   ]];%n     %nB2=K\[[a][0]];%n%nB  = [Z(1,2),B2']';%n%nC = I(2,4);%n%nD = Z(2,1);%n</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <param name="tag_name">128</param>
+            <param name="state_number">128</param>
+            <param name="has_variable_a">true</param>
+            <param name="has_variable_b">true</param>
+            <param name="has_variable_c">true</param>
+            <param name="has_variable_d">true</param>
+            <figure x="997" y="734" height="102" width="107" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>continuous_matx_state_space</class>
+        </block>
+        <block name="mStateFeedback" id="416">
+            <port id="417" name="u591" type="input">
+                <figure x="557" y="732" angle="0"/>
+            </port>
+            <port id="418" name="y592" type="output">
+                <figure x="597" y="732" angle="0"/>
+            </port>
+            <param name="gain_variable">F</param>
+            <param name="tag_name">F</param>
+            <param name="is_variable">true</param>
+            <param name="parameters">Matrix pole;</param>
+            <param name="update_function">pole = [(-10,0),(-10,0),(-5,0),(-5,0)]';%nF = pplace(Plant.A, Plant.B, pole);</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <figure x="580" y="735" height="40" width="40" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="omitted">false</param>
+            </figure>
+            <class>math_matx_constant</class>
+        </block>
+        <block name="" id="423">
+            <port id="424" name="u667" type="input">
+                <figure x="404" y="732" angle="0"/>
+            </port>
+            <port id="425" name="u668" type="input">
+                <figure x="411" y="740" angle="270"/>
+            </port>
+            <port id="426" name="y669" type="output">
+                <figure x="419" y="732" angle="0"/>
+            </port>
+            <param name="operation_list">+-</param>
+            <figure x="414" y="735" height="15" width="15" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>math_sum</class>
+        </block>
+        <block name="StateFeedback" id="435">
+            <port id="436" name="u703" type="input">
+                <figure x="405" y="397" angle="0"/>
+            </port>
+            <port id="437" name="y704" type="output">
+                <figure x="575" y="397" angle="0"/>
+            </port>
+            <param name="constant_matrix">mStateFeedback.F</param>
+            <param name="tag_name">F</param>
+            <param name="is_variable">true</param>
+            <figure x="493" y="400" height="40" width="170" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="omitted">false</param>
+            </figure>
+            <class>math_constant</class>
+        </block>
+        <block name="" id="442">
+            <port id="443" name="u776" type="input">
+                <figure x="776" y="731" angle="0"/>
+            </port>
+            <port id="444" name="y777" type="output">
+                <figure x="786" y="731" angle="0"/>
+            </port>
+            <port id="445" name="y778" type="output">
+                <figure x="781" y="736" angle="90"/>
+            </port>
+            <figure x="784" y="734" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="454">
+            <port id="455" name="u803" type="input">
+                <figure x="704" y="891" angle="180"/>
+            </port>
+            <port id="456" name="u804" type="input">
+                <figure x="704" y="905" angle="180"/>
+            </port>
+            <port id="457" name="y805" type="output">
+                <figure x="684" y="898" angle="180"/>
+            </port>
+            <figure x="697" y="901" height="40" width="20" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>routing_mux</class>
+        </block>
+        <block name="" id="473">
+            <port id="474" name="u914" type="input">
+                <figure x="676" y="554" angle="180"/>
+            </port>
+            <port id="475" name="u915" type="input">
+                <figure x="676" y="568" angle="180"/>
+            </port>
+            <port id="476" name="y916" type="output">
+                <figure x="656" y="561" angle="180"/>
+            </port>
+            <figure x="669" y="564" height="40" width="20" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>routing_mux</class>
+        </block>
+        <block name="Restrictor" id="492">
+            <port id="493" name="u978" type="input">
+                <figure x="1201" y="555" angle="0"/>
+            </port>
+            <param name="range">[[-15,15][-Inf,Inf]]</param>
+            <figure x="1219" y="558" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>sinks_restrictor</class>
+        </block>
+        <block name="ZOH" id="553">
+            <port id="554" name="u554" type="input">
+                <figure x="801" y="398" angle="0"/>
+            </port>
+            <port id="555" name="y555" type="output">
+                <figure x="831" y="398" angle="0"/>
+            </port>
+            <param name="sampling_interval">0.005</param>
+            <figure x="819" y="401" height="30" width="30" angle="0" horizontalReflect="false" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>discrete_zero_order_hold</class>
+        </block>
+        <block name="ContinuousObserver" id="565">
+            <port id="566" name="u883" type="input">
+                <figure x="629" y="899" angle="180"/>
+            </port>
+            <port id="567" name="y884" type="output">
+                <figure x="522" y="899" angle="180"/>
+            </port>
+            <param name="a_variable">A</param>
+            <param name="b_variable">B</param>
+            <param name="c_variable">C</param>
+            <param name="d_variable">D</param>
+            <param name="initial_state">[0 0]'</param>
+            <param name="parameters">Matrix pole;</param>
+            <param name="update_function">Matrix Ah, Bh, Ch, Dh, Jh;%npole = [(-2,0), (-2,0)]';%n{Ah, Bh, Ch, Dh,Jh} = obsg(Plant.A, Plant.B, Plant.C, pole);%nA = Ah;%nB = [Jh Bh];%nC = Ch;%nD = [Z(Rows(Dh), Cols(Jh)), Dh];</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <param name="tag_name">882</param>
+            <param name="state_number">2</param>
+            <param name="has_variable_a">true</param>
+            <param name="has_variable_b">true</param>
+            <param name="has_variable_c">true</param>
+            <param name="has_variable_d">true</param>
+            <figure x="579" y="902" height="102" width="107" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>continuous_matx_state_space</class>
+        </block>
+        <block name="DiscreteObserver" id="576">
+            <port id="577" name="u577" type="input">
+                <figure x="544" y="561" angle="180"/>
+            </port>
+            <port id="578" name="y578" type="output">
+                <figure x="437" y="561" angle="180"/>
+            </port>
+            <param name="a_variable">A</param>
+            <param name="b_variable">B</param>
+            <param name="c_variable">C</param>
+            <param name="d_variable">D</param>
+            <param name="initial_state">[0 0]'</param>
+            <param name="sampling_interval">ZOH.samplingInterval</param>
+            <param name="parameters"></param>
+            <param name="update_function">{A, B} = c2d(ContinuousObserver.A, ContinuousObserver.B, samplingInterval);
+C = ContinuousObserver.C;
+D = ContinuousObserver.D;</param>
+            <param name="utility_functions"></param>
+            <param name="initialize_function"></param>
+            <param name="tag_name">576</param>
+            <param name="state_number">2</param>
+            <param name="has_variable_a">true</param>
+            <param name="has_variable_b">true</param>
+            <param name="has_variable_c">true</param>
+            <param name="has_variable_d">true</param>
+            <figure x="494" y="564" height="102" width="107" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[255, 255, 255]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+            </figure>
+            <class>discrete_matx_state_space</class>
+        </block>
+        <link to="278" from="386">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="338" from="279">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="369" from="280">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="398" from="339">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="357" from="371">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="290" from="363">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="345" from="352">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="302" from="411">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="424" from="346">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="417" from="426">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="436" from="400">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="391" from="437">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="381" from="303">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="443" from="418">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="410" from="444">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="455" from="445">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="456" from="304">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="314" from="392">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="474" from="316">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="326" from="292">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="493" from="327">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="475" from="328">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="370" from="291">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="554" from="315">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="362" from="555">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="566" from="457">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="425" from="567">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="577" from="476">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="399" from="578">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+    </system>
+</bdml>
