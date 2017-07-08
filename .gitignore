@@ -6,3 +6,10 @@ bin/
 .matx_history
 plot*
 simulation/matx/.matx_history
+report/*.aux
+report/*.lof
+report/*.lot
+report/*.log
+report/*.pdf
+report/*.toc
+
