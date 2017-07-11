@@ -12,4 +12,4 @@ report/*.lot
 report/*.log
 report/*.pdf
 report/*.toc
-
+report/*.dvi
