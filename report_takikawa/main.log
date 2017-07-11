@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.14159265-p3.7.1-u1.22-161114-2.6 (utf8.uptex) (TeX Live 2017/W32TeX) (preloaded format=uplatex 2017.7.10)  11 JUL 2017 23:25
+This is e-upTeX, Version 3.14159265-p3.7.1-u1.22-161114-2.6 (utf8.uptex) (TeX Live 2017/W32TeX) (preloaded format=uplatex 2017.7.10)  12 JUL 2017 00:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -153,19 +153,19 @@ LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
 (Font)              scaled to size 7.69775pt on input line 2.
 LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
 (Font)              scaled to size 5.77332pt on input line 2.
-)
+ [1
+
+])
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- [1
-
-] [2
-
-] (./main.lof)
+ [2] (./main.lof)
 \tf@lof=\write4
 \openout4 = `main.lof'.
 
- [3]
+ [3
+
+]
 [4
 
 ] (./main.lot)
@@ -203,30 +203,46 @@ File: modeling.png Graphic file (type bmp)
 <modeling.png>
 [3
 
-] [4] [5] [6
+] [4]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 282.
+ [5]
+File: definition_a.png Graphic file (type bmp)
+<definition_a.png>
+File: cart_step.png Graphic file (type bmp)
+<cart_step.png>
+ [6]
+File: feedback.eps Graphic file (type eps)
+<feedback.eps>
+ [7] [8] [9]
+File: measure_jc.png Graphic file (type bmp)
+<measure_jc.png>
+ [10
 
 ]
 第 3 章
-[7] [8
+[11
+
+] [12
 
 ]
 第 4 章
-[9] [10
+[13] [14
 
 ]
 第 5 章
-[11] [12
+[15] [16
 
 ]
 第 6 章
-[13] (./main.aux) ) 
+[17] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 826 strings out of 493644
- 9881 string characters out of 6151928
+ 857 strings out of 493644
+ 10464 string characters out of 6151928
  78097 words of memory out of 5000000
- 4449 multiletter control sequences out of 15000+600000
- 14085 words of font info for 67 fonts, out of 8000000 for 9000
+ 4472 multiletter control sequences out of 15000+600000
+ 14700 words of font info for 69 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  25i,18n,21p,650b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (20 pages, 22244 bytes).
+Output written on main.dvi (24 pages, 34376 bytes).
