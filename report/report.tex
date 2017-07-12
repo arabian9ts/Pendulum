@@ -79,12 +79,55 @@
 
 ただし、$M$,$f$は台車の質量と摩擦係数、$m$,$l$,$c$,$J$は振子の質量、振子の重心から回転軸までの距離、
 回転軸摩擦係数、重心周りに働く慣性モーメントである。また、$F_{H}$,$F_{V}$は振子が台車から受ける
-水平効力と垂直抗力である。$F$はモータによる台車への駆動力であり、駆動アンプへの入力電圧$u$を用いて
+水平効力と垂直抗力である。$F$はモータによる台車への駆動力であり、定数$a$、駆動アンプへの入力電圧$u$を用いて
 式(\ref{F})で表される。
 
 \begin{equation}
     F = au
     \label{F}
+\end{equation}
+
+ここで、系の状態$x$を4つの状態変数からなる縦ベクトルとする。すなわち、
+$$
+    x = \left [
+    \begin{array}{c}
+        r \\
+        \theta \\
+        \dot r \\
+        \dot \theta
+    \end{array}
+    \right ]
+$$
+と定義する。
+次に、式(\ref{modeling:cart1})から式(\ref{modeling:pend2})から倒立振子系の非線形方程式を求める。
+式(\ref{modeling:cart1}),式(\ref{modeling:pend1})から$F_{H}$を消去すると、
+$$
+    M \ddot r = au - m \ddot r + ml \sin \theta - f \dot r
+$$
+となり、式(\ref{ddot_r})が得られる。
+\begin{equation}
+    \ddot r = \frac{au + ml\sin \theta - f \dot r}{M + m}
+    \label{ddot_r}
+\end{equation}
+また、式(\ref{modeling:pend1}),式(\ref{modeling:cart2}),式(\ref{modeling:pend2})から
+$F_{H}$,$F_{V}$を消去すると、
+$$
+    J \ddot \theta = l\left(
+        m\frac{d^2}{dt^2}\left(
+            l\cos \theta + mg
+            \right)
+        \right)\sin \theta
+        -
+        l\left(
+            m\frac{d^2}{dt^2}\left(
+                r + l\sin \theta
+            \right)
+        \right)\cos \theta
+$$
+となり、式(\ref{del_Fh_Fv})が得られる。
+\begin{equation}
+    ml\cos \theta \ddot r + (J + ml^2) \ddot \theta = mgl\sin \theta -c \dot \theta
+    \label{del_Fh_Fv}
 \end{equation}
 
 \chapter{制御系設計}
