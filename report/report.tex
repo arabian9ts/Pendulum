@@ -33,6 +33,7 @@
 具体的に、次のことを目的とする。
 
 \begin{itemize}
+    \renewcommand{\labelenumi}{(\roman{enumi})}
     \item 倒立振子が安定化制御を行っている状態において、外乱による影響で振子が傾いたとき、倒立状態に戻すことができる (不安定平衡点の安定化)。
     \item 倒立振子系に一定周期のパルス入力を与え、台車を目的の変位へ移動させる。
     \item 倒立振子が入力なしで静止している状態から、台車を動かすことにより振子を振り上げ、倒立状態にする (振り上げ制御)。
@@ -104,14 +105,14 @@
 
 ここで、系の状態$x$を4つの状態変数からなる縦ベクトルとする。すなわち、
 $$
-    x = \left [
+    x = \left[
     \begin{array}{c}
         r \\
         \theta \\
         \dot r \\
         \dot \theta
     \end{array}
-    \right ]
+    \right]
 $$
 と定義する。
 次に、式(\ref{modeling:cart1})から式(\ref{modeling:pend2})から倒立振子系の非線形方程式を求める。
@@ -371,6 +372,91 @@ $$
 $$
 
 である。
+
+\section{パラメータの同定}
+パラメータの同定のため、以下の手順で測定を行う。
+
+\begin{enumerate}
+    \item 実測できるパラメータ$m$(振子の質量[kg])、$l$(振子の重心から回転軸までの長さ[m])の測定を行う。
+    \item 駆動アンプへの入力電圧とモータ駆動力の変換係数$a$を求める。
+    \begin{enumerate}
+        \item 振子を台車から取り外す。
+        \item モータに一定電圧$u$を加え、ばねばかりで引き、台車が正の方向に動き始めるときの力($au+$摩擦力)
+        を$f_{max}$、負の方向に動き始めるときの力($au-$摩擦力)を$f_{min}$とする。測定は
+        $10$[V], $11$[V], ..., $15$[V]の各電圧に対して行う。
+        \item $f_{max}$, $f_{min}$それぞれの回帰直線の傾きを平均し、その値を$a$[N/V]、
+        すなわち入力電圧$u$[V]とモータ駆動力$f$[N]の変換係数とする。
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.6\linewidth]{definition_a.eps}
+                \caption{図\ref{definition_a}: パラメータ$a$の決定}
+                \label{definition_a}
+            \end{center}
+        \end{figure}
+    \end{enumerate}
+
+    \item 台車の変位$r$と$y_{1}$の変換係数を$c_{1} = 1.0$ [V/m], 
+    振子の角度$\theta$と$y_{2}$の変換係数を$c_{2} = 1.0$ [V/rad]とする。
+
+    \item 以下の2通りの方法で台車系の質量$M$[kg]と摩擦係数$f$[kg/s]を求める。
+    \begin{itemize}
+        % --- step response --- %
+        \item ステップ応答による方法　\\
+        \quad 振子を台車から取り外したまま、台車のステップ応答を測定する。そのとき、台車の運動方程式は、
+
+        \begin{equation}
+            M \ddot r = au - fr
+        \end{equation}
+
+        であり、入力$u$から目標値$r$までの伝達関数$G$は、
+
+        \begin{equation}
+            G(s) = \frac{K}{s(Ts + 1)}
+        \end{equation}
+
+        となる。ただし、
+
+        \begin{equation}
+            K = \frac{a}{f},\ T = \frac{M}{f}
+        \end{equation}
+
+        である。初期状態を零ベクトルとすれば,台車のステップ応答は,
+
+        \begin{equation}
+            r(t) = KU_{0}
+            \left(
+                T\exp^{\frac{-t}{T}} + t - T
+            \right)
+            \label{step_response}
+        \end{equation}
+
+        である。(図\ref{cart_step}参照)ただし、$U_{0}$はステップ入力の$t > 0$での値である。式(\ref{step_response})
+        において、$t \to \infty$の極限をとると、
+
+        \begin{equation}
+            \lim_{t \to \infty} r(t) = KU_{0}(t - T)
+            \label{lim_step_response}
+        \end{equation}
+
+        となる。図\ref{cart_step}を参考に、式(\ref{lim_step_response})から$T$, $K$を求め、
+
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.6\linewidth]{cart_step.eps}
+                \caption{図\ref{cart_step}: 台車のステップ応答}
+                \label{cart_step}
+            \end{center}
+        \end{figure}
+
+        $10$[V], $11$[V], ..., $15$[V]の各電圧をステップ入力として与え、それぞれのステップ応答
+        から求めたパラメータ$T$, $K$を平均し、$M$, $f$を決定する。
+
+        % --- feedback --- %
+        \newpage
+        \item フィードバックによる方法
+    \end{itemize}
+\end{enumerate}
+
 
 % =============================== chapter 2 END =============================== %
 
