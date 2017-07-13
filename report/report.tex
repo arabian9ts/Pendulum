@@ -1,40 +1,48 @@
 \documentclass[a4j,11pt,twoside]{jbook}
 \usepackage{ascmac}
+\usepackage{amsmath}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{matx}
 \usepackage{manyfloat}
 \usepackage{caption}
+\usepackage{geometry}
 \captionsetup{labelformat=empty,labelsep=none}
+\geometry{left=25mm,right=25mm,top=28mm,bottom=25mm}
 
 \begin{document}
 
-%--- title page ---%
+% --- title page --- %
 \title{倒立振子の安定化制御}
 \author{前田 拓}
 \date{2017年7月12日}
 \maketitle
 
-%--- index ---%
+% --- index --- %
 \pagenumbering{roman}
 \tableofcontents
 \listoffigures
 \listoftables
 \pagenumbering{arabic}
 
-%--- main ---%
+% --- main --- %
+
+% ================================= chapter 1 ================================= %
 \chapter{はじめに}
 \section{目的}
 本実験の目的は、倒立振子系を状態空間表現を用いて安定化制御し、線形不変システムを設計することである。
 具体的に、次のことを目的とする。
+
 \begin{itemize}
     \item 倒立振子が安定化制御を行っている状態において、外乱による影響で振子が傾いたとき、倒立状態に戻すことができる (不安定平衡点の安定化)。
     \item 倒立振子系に一定周期のパルス入力を与え、台車を目的の変位へ移動させる。
     \item 倒立振子が入力なしで静止している状態から、台車を動かすことにより振子を振り上げ、倒立状態にする (振り上げ制御)。
 \end{itemize}
+
 \section{実験装置}
+
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=0.6\linewidth]{model.png}
+        \includegraphics[width=0.6\linewidth]{model.eps}
         \caption{図\ref{pendulum}: 倒立振子系}
         \label{pendulum}
     \end{center}
@@ -46,12 +54,19 @@
 また、鉛直方向上向きから時計回りを正の方向として、台車に取り付けられた振子が回転した角度を$\theta$とする。
 ポテンショメータにより、$r$と$\theta$を測定し、入力$u$を与える。
 
+% =============================== chapter 1 END =============================== %
+
+
+% ================================= chapter 2 ================================= %
 \chapter{モデリング}
 \section{数式モデル}
 制御器の設計のため、倒立振子系の状態方程式、観測方程式から数式モデルを導出する。
+
+\subsection{状態方程式}
+
 \begin{figure}[htbp]
     \begin{center}
-        \includegraphics[width=0.6\linewidth]{modeling.png}
+        \includegraphics[width=0.6\linewidth]{modeling.eps}
         \caption{図\ref{modeling}: モデリングのための力の分解}
         \label{modeling}
     \end{center}
@@ -100,17 +115,16 @@ $$
 $$
 と定義する。
 次に、式(\ref{modeling:cart1})から式(\ref{modeling:pend2})から倒立振子系の非線形方程式を求める。
-式(\ref{modeling:cart1}),式(\ref{modeling:pend1})から$F_{H}$を消去すると、
-$$
-    M \ddot r = au - m \ddot r + ml \sin \theta - f \dot r
-$$
-となり、式(\ref{ddot_r})が得られる。
+式(\ref{modeling:cart1}),式(\ref{modeling:pend1})から$F_{H}$を消去すると、式(\ref{del_Fh})が得られる。
+
 \begin{equation}
-    \ddot r = \frac{au + ml\sin \theta - f \dot r}{M + m}
-    \label{ddot_r}
+    (M + m) \ddot r + (ml\cos \theta) \ddot \theta = au + (ml\sin \theta) \dot \theta^2 - f \dot r
+    \label{del_Fh}
 \end{equation}
+
 また、式(\ref{modeling:pend1}),式(\ref{modeling:cart2}),式(\ref{modeling:pend2})から
 $F_{H}$,$F_{V}$を消去すると、
+
 $$
     J \ddot \theta = l\left(
         m\frac{d^2}{dt^2}\left(
@@ -124,18 +138,268 @@ $$
             \right)
         \right)\cos \theta
 $$
+
 となり、式(\ref{del_Fh_Fv})が得られる。
+
 \begin{equation}
     ml\cos \theta \ddot r + (J + ml^2) \ddot \theta = mgl\sin \theta -c \dot \theta
     \label{del_Fh_Fv}
 \end{equation}
 
+式(\ref{del_Fh}),式(\ref{del_Fh_Fv})を行列表現すると、
+
+$$
+    % --- left side --- %
+    % --- first matrix --- %
+    \left[
+    \begin{array}{cc}
+        M + m          &  ml\cos \theta \\
+        ml\cos \theta  &  J + ml^2
+    \end{array}
+    \right]
+    % --- second matrix --- %
+    \left[
+    \begin{array}{c}
+        \ddot r \\
+        \ddot \theta
+    \end{array}    
+    \right]
+    =
+    % --- right side --- %
+    \left[
+        \begin{array}{c}
+            -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
+            mgl\sin \theta - c \dot \theta
+        \end{array}
+    \right]
+$$
+
+$$
+    % --- left side --- %
+    \left[
+    \begin{array}{c}
+        \ddot r \\
+        \ddot \theta
+    \end{array}    
+    \right]
+    =
+    % --- right side --- %
+    % --- first matrix --- %
+    \left[
+    \begin{array}{cc}
+        M + m          &  ml\cos \theta \\
+        ml\cos \theta  &  J + ml^2
+    \end{array}
+    \right]^{-1}
+    % --- second matrix --- %
+    \left[
+        \begin{array}{c}
+            -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
+            mgl\sin \theta - c \dot \theta
+        \end{array}
+    \right]
+$$
+
+となる。よって、
+
+\begin{equation}
+    \dot x = f(x, u) = 
+    \left[
+        \begin{array}{c}
+            \dot r \\
+            \dot \theta \\
+            K^{-1}
+            \left[
+                \begin{array}{c}
+                    -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
+                    mgl\sin \theta - c \dot \theta
+                \end{array}
+            \right]
+        \end{array}    
+    \right],\
+    K = 
+    \left[
+        \begin{array}{cc}
+            M + m          &  ml\cos \theta \\
+            ml\cos \theta  &  J + ml^2
+        \end{array}
+    \right]
+    \label{nonlinear}
+\end{equation}
+
+が得られる。本実験では、不安定平衡点$x=0$近傍で線形化したモデルを採用できる。
+$\theta$に関して式(\ref{nonlinear})を一次近似すると、
+$\sin \theta \approx \theta,\ \cos \theta \approx 1,\ \theta^2 \approx 0$と近似できることから、
+
+\begin{equation}
+% --- Matrix x_dot --- %
+    \dot x = 
+    \left[
+        \begin{array}{c}
+            \dot r \\
+            \dot \theta \\
+            K^{-1}
+            \left[
+                \begin{array}{c}
+                    -f \dot r + au \\
+                    mgl \theta - c \dot \theta
+                \end{array}
+            \right]
+        \end{array}    
+    \right],\
+    %--- Matrix K ---%
+    K = 
+    \left[
+        \begin{array}{cc}
+            M + m  &  ml \\
+            ml     &  J + ml^2
+        \end{array}
+    \right]
+\end{equation}
+
+を得る。線形化された倒立振子系の状態方程式は、式(\ref{linear_general})のように表現される。
+
+\begin{equation}
+    \dot x = Ax + Bu
+    \label{linear_general}
+\end{equation}
+
+ここで、
+
+$$
+    % --- Matrix A --- %
+    A = 
+    \left[
+        \begin{array}{cc}
+            O_{2 \times 2}  &  I_{2} \\
+            A_{21}          &  A_{22}
+        \end{array}
+    \right],\
+    % --- Matrix B --- %
+    B = 
+     \left[
+        \begin{array}{c}
+            O_{2 \times 1} \\
+            B_{2}
+        \end{array}
+    \right]
+$$
+
+である。ただし、
+
+$$
+    A_{21} = K^{-1}
+    \left[
+        \begin{array}{cc}
+            0  &  0 \\
+            0  &  mgl
+        \end{array}    
+    \right],\
+    A_{22} = K^{-1}
+    \left[
+        \begin{array}{cc}
+            -f  &  0 \\
+            0   &  -c
+        \end{array}    
+    \right],\
+    B_{2} = K^{-1}
+    \left[
+        \begin{array}{c}
+            a \\
+            0
+        \end{array}    
+    \right]
+$$
+
+である。
+
+\subsection{観測方程式}
+2つの観測出力は、
+
+$$
+    y_{1} = c_{1} r
+$$
+
+$$
+    y_{2} = c_{2} \theta
+$$
+
+のように表される。ここで、$c_{1}$は変位・電圧変換係数, $c_{2}$は角度・電圧変換係数である。
+これらからなる縦ベクトル、すなわち出力$y$を、
+
+$$
+    y = 
+    \left[
+        \begin{array}{c}
+            y_{1} \\
+            y_{2}
+        \end{array}    
+    \right]
+$$
+
+と定義すると、倒立振子系に対する観測方程式を、
+
+\begin{equation}
+    y = Cx
+\end{equation}
+
+と表せる。ただし、
+
+$$
+    % --- Matrix N --- %
+    N = 
+    \left[
+        \begin{array}{cc}
+            c_{1}  &  0 \\
+            0      &  C_{2}
+        \end{array}
+    \right],\
+    % --- Matrix C --- %
+    C = 
+    \left[
+        \begin{array}{cc}
+            N  &  O_{2 \times 2}
+        \end{array}
+    \right]
+    =
+    \left[
+        \begin{array}{cccc}
+            c_{1}  &    0    &    0    &    0 \\
+            0      &  c_{2}  &    0    &    0
+        \end{array}
+    \right]
+$$
+
+である。
+
+% =============================== chapter 2 END =============================== %
+
+% ================================= chapter 3 ================================= %
 \chapter{制御系設計}
 
+
+
+% =============================== chapter 3 END =============================== %
+
+% ================================= chapter 4 ================================= %
 \chapter{シミュレーション}
 
+
+% =============================== chapter 4 END =============================== %
+
+% ================================= chapter 5 ================================= %
 \chapter{実験}
 
+
+% =============================== chapter 5 END =============================== %
+
+% ================================= chapter 6 ================================= %
 \chapter{おわりに}
 
+
+% =============================== chapter 6 END =============================== %
+
+
+
+% --- main END ---%
 \end{document}
