@@ -454,7 +454,7 @@ $$
 
         % --- feedback --- %
         \newpage
-        \item フィードバックによる方法
+        \item フィードバックによる方法 \\
         \quad 台車の数式モデルである式(\ref{eq_model})、出力$y_{1} = c_{1}r$について、フィードバックにより
         入力を制御する。すなわち、
 
@@ -531,8 +531,6 @@ $$
 
         のようにして求まる。
 
-
-
         \begin{figure}[htbp]
             \begin{center}
                 \includegraphics[width=0.6\linewidth]{feedback.eps}
@@ -542,6 +540,44 @@ $$
         \end{figure}
 
     \end{itemize}
+
+    \item パラメータ$J$と$c$の決定 \\
+    \quad 振子を台車に取り付け、台車を固定したまま振子を自由振動させることにより、パラメータ$J$, $c$を測定する。
+    このとき、振子の運動方程式は、
+
+    \begin{equation}
+        (J + ml^2) \ddot{\theta} = -mgl\sin{\theta} - c \dot{\theta}
+        \label{pend_eq1}
+    \end{equation}
+
+    \begin{equation}
+        y_{2} = c_{2} \theta
+        \label{pend_eq2}
+    \end{equation}
+
+    で与えられる。$\theta$を微小区間で考えると、式(\ref{pend_eq1}), 式(\ref{pend_eq2})は次のように書ける。
+
+    \begin{equation}
+        \ddot{y_2} + 2\zeta \omega_{n} \dot{y_{2}} + \omega_{n}^2y_{2} = 0
+        \label{pend_eq3}
+    \end{equation}
+
+    \begin{equation}
+        \zeta = \frac{c}{2\sqrt{mgl(J + ml^2)}},\
+        \omega_{n} = \sqrt{\frac{mgl}{J + ml^2}}
+    \end{equation}
+
+    式(\ref{pend_eq3})の解で表される減衰振動の対数減衰率を$\lambda$, 周期を$T$とすると、式(\ref{lambda})
+    が成り立つことから$J$と$c$は、
+
+    \begin{equation}
+        J = \frac{mglT^2}{4\pi^2 + \lambda^2} - ml^2,\
+        c = \frac{2\lambda (J + ml^2)}{T}
+    \end{equation}
+
+    のように与えられる。
+
+
 \end{enumerate}
 
 
