@@ -77,19 +77,19 @@
 式(\ref{modeling:cart1})から式(\ref{modeling:pend2})に示す。
 
 \begin{equation}
-    M \ddot r = au - F_{H} - f \dot r
+    M \ddot{r} = au - F_{H} - f \dot{r}
     \label{modeling:cart1}
 \end{equation}
 \begin{equation}
-    J \ddot \theta = lF_{V}\sin \theta - lF_{H}\cos \theta - c \dot \theta
+    J \ddot{\theta} = lF_{V}\sin{\theta} - lF_{H}\cos{\theta} - c \dot{\theta}
     \label{modeling:pend1}
 \end{equation}
 \begin{equation}
-    m\frac{d^2}{dt^2}(r + l\sin \theta) = F_{H}
+    m\frac{d^2}{dt^2}(r + l\sin{\theta}) = F_{H}
     \label{modeling:cart2}
 \end{equation}
 \begin{equation}
-    m\frac{d^2}{dt^2}(l\cos \theta) = F_{V} - mg
+    m\frac{d^2}{dt^2}(l\cos{\theta}) = F_{V} - mg
     \label{modeling:pend2}
 \end{equation}
 
@@ -109,8 +109,8 @@ $$
     \begin{array}{c}
         r \\
         \theta \\
-        \dot r \\
-        \dot \theta
+        \dot{r} \\
+        \dot{\theta}
     \end{array}
     \right]
 $$
@@ -119,7 +119,7 @@ $$
 式(\ref{modeling:cart1}),式(\ref{modeling:pend1})から$F_{H}$を消去すると、式(\ref{del_Fh})が得られる。
 
 \begin{equation}
-    (M + m) \ddot r + (ml\cos \theta) \ddot \theta = au + (ml\sin \theta) \dot \theta^2 - f \dot r
+    (M + m) \ddot{r} + (ml\cos{\theta}) \ddot{\theta} = au + (ml\sin{\theta}) \dot{\theta}^2 - f \dot{r}
     \label{del_Fh}
 \end{equation}
 
@@ -129,21 +129,21 @@ $F_{H}$,$F_{V}$を消去すると、
 $$
     J \ddot \theta = l\left(
         m\frac{d^2}{dt^2}\left(
-            l\cos \theta + mg
+            l\cos{\theta} + mg
             \right)
-        \right)\sin \theta
+        \right)\sin{\theta}
         -
         l\left(
             m\frac{d^2}{dt^2}\left(
-                r + l\sin \theta
+                r + l\sin{\theta}
             \right)
-        \right)\cos \theta
+        \right)\cos{\theta}
 $$
 
 となり、式(\ref{del_Fh_Fv})が得られる。
 
 \begin{equation}
-    ml\cos \theta \ddot r + (J + ml^2) \ddot \theta = mgl\sin \theta -c \dot \theta
+    ml\cos{\theta} \ddot{r} + (J + ml^2) \ddot{\theta} = mgl\sin{\theta} -c \dot{\theta}
     \label{del_Fh_Fv}
 \end{equation}
 
@@ -154,23 +154,23 @@ $$
     % --- first matrix --- %
     \left[
     \begin{array}{cc}
-        M + m          &  ml\cos \theta \\
-        ml\cos \theta  &  J + ml^2
+        M + m          &  ml\cos{\theta} \\
+        ml\cos{\theta}  &  J + ml^2
     \end{array}
     \right]
     % --- second matrix --- %
     \left[
     \begin{array}{c}
-        \ddot r \\
-        \ddot \theta
+        \ddot{r} \\
+        \ddot{\theta}
     \end{array}    
     \right]
     =
     % --- right side --- %
     \left[
         \begin{array}{c}
-            -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
-            mgl\sin \theta - c \dot \theta
+            -f \dot{r} + ml(\sin{\theta)} \dot{\theta}^2 + au \\
+            mgl\sin{\theta} - c \dot{\theta}
         \end{array}
     \right]
 $$
@@ -179,8 +179,8 @@ $$
     % --- left side --- %
     \left[
     \begin{array}{c}
-        \ddot r \\
-        \ddot \theta
+        \ddot{r} \\
+        \ddot{\theta}
     \end{array}    
     \right]
     =
@@ -188,15 +188,15 @@ $$
     % --- first matrix --- %
     \left[
     \begin{array}{cc}
-        M + m          &  ml\cos \theta \\
-        ml\cos \theta  &  J + ml^2
+        M + m           &  ml\cos{\theta} \\
+        ml\cos{\theta}  &  J + ml^2
     \end{array}
     \right]^{-1}
     % --- second matrix --- %
     \left[
         \begin{array}{c}
-            -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
-            mgl\sin \theta - c \dot \theta
+            -f \dot{r} + ml(\sin{\theta)} \dot{\theta}^2 + au \\
+            mgl\sin{\theta} - c \dot{\theta}
         \end{array}
     \right]
 $$
@@ -207,13 +207,13 @@ $$
     \dot x = f(x, u) = 
     \left[
         \begin{array}{c}
-            \dot r \\
-            \dot \theta \\
+            \dot{r} \\
+            \dot{\theta} \\
             K^{-1}
             \left[
                 \begin{array}{c}
-                    -f \dot r + ml(\sin \theta) \dot \theta^2 + au \\
-                    mgl\sin \theta - c \dot \theta
+                    -f \dot{r} + ml(\sin{\theta}) \dot{\theta}^2 + au \\
+                    mgl\sin{\theta} - c \dot{\theta}
                 \end{array}
             \right]
         \end{array}    
@@ -221,8 +221,8 @@ $$
     K = 
     \left[
         \begin{array}{cc}
-            M + m          &  ml\cos \theta \\
-            ml\cos \theta  &  J + ml^2
+            M + m           &  ml\cos{\theta} \\
+            ml\cos{\theta}  &  J + ml^2
         \end{array}
     \right]
     \label{nonlinear}
@@ -230,20 +230,20 @@ $$
 
 が得られる。本実験では、不安定平衡点$x=0$近傍で線形化したモデルを採用できる。
 $\theta$に関して式(\ref{nonlinear})を一次近似すると、
-$\sin \theta \approx \theta,\ \cos \theta \approx 1,\ \theta^2 \approx 0$と近似できることから、
+$\sin{\theta} \approx \theta,\ \cos{\theta} \approx 1,\ \theta^2 \approx 0$と近似できることから、
 
 \begin{equation}
 % --- Matrix x_dot --- %
     \dot x = 
     \left[
         \begin{array}{c}
-            \dot r \\
-            \dot \theta \\
+            \dot{r} \\
+            \dot{\theta} \\
             K^{-1}
             \left[
                 \begin{array}{c}
-                    -f \dot r + au \\
-                    mgl \theta - c \dot \theta
+                    -f \dot{r} + au \\
+                    mgl \theta - c \dot{\theta}
                 \end{array}
             \right]
         \end{array}    
@@ -352,7 +352,7 @@ $$
     \left[
         \begin{array}{cc}
             c_{1}  &  0 \\
-            0      &  C_{2}
+            0      &  c_{2}
         \end{array}
     \right],\
     % --- Matrix C --- %
