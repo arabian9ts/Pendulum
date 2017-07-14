@@ -9,7 +9,7 @@ simulation/matx/.matx_history
 
 ### author maeda ###
 report/*
-!report/res/*
+!report/eps/*
 !report/*.tex
 !report/document/*
 
