@@ -60,6 +60,7 @@
 
 % ================================= chapter 2 ================================= %
 \chapter{モデリング}
+\label{chapter_modeling}
 \section{数式モデル}
 制御器の設計のため、倒立振子系の状態方程式、観測方程式から数式モデルを導出する。
 
@@ -151,14 +152,14 @@ $$
 
 $$
     % --- left side --- %
-    % --- first matrix --- %
+    % --- Matrix first --- %
     \left[
     \begin{array}{cc}
         M + m          &  ml\cos{\theta} \\
         ml\cos{\theta}  &  J + ml^2
     \end{array}
     \right]
-    % --- second matrix --- %
+    % --- Matrix second --- %
     \left[
     \begin{array}{c}
         \ddot{r} \\
@@ -185,14 +186,14 @@ $$
     \right]
     =
     % --- right side --- %
-    % --- first matrix --- %
+    % --- Matrix first --- %
     \left[
     \begin{array}{cc}
         M + m           &  ml\cos{\theta} \\
         ml\cos{\theta}  &  J + ml^2
     \end{array}
     \right]^{-1}
-    % --- second matrix --- %
+    % --- Matrixsecond --- %
     \left[
         \begin{array}{c}
             -f \dot{r} + ml(\sin{\theta)} \dot{\theta}^2 + au \\
@@ -577,14 +578,27 @@ $$
 
     のように与えられる。
 
-
 \end{enumerate}
 
+
+\subsection{パラメータの検証}
 
 % =============================== chapter 2 END =============================== %
 
 % ================================= chapter 3 ================================= %
 \chapter{制御系設計}
+\subsection{特性解析}
+第\ref{chapter_modeling}章で
+
+\subsection{制御システムの構成}
+
+\subsection{状態フィードバック$F$の設計}
+
+\subsection{$\hat{A}$, $\hat{B}$, $\hat{C}$, $\hat{D}$, $\hat{J}$の設計}
+
+\subsection{制御システムの離散化}
+
+\subsection{振り上げ制御と安定化}
 
 
 
@@ -593,11 +607,34 @@ $$
 % ================================= chapter 4 ================================= %
 \chapter{シミュレーション}
 
+\subsection{重み行列変更に関するシミュレーション}
+
+\subsection{オブザーバの極変更に関するシミュレーション}
+
+\subsection{サンプリング周期変更に関するシミュレーション}
+
+\subsection{振り上げ制御のシミュレーション}
+
+\subsection{シミュレーションの考察}
 
 % =============================== chapter 4 END =============================== %
 
 % ================================= chapter 5 ================================= %
 \chapter{実験}
+
+\subsection{実験装置}
+
+\subsection{安定化制御の実験}
+
+\subsection{重み行列}
+
+\subsection{オブザーバの極}
+
+\subsection{サンプリング周期}
+
+\subsection{振り上げ制御}
+
+\subsection{振り上げ制御に関する考察}
 
 
 % =============================== chapter 5 END =============================== %
