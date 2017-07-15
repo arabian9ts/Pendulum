@@ -1,0 +1,87 @@
+% ================================= chapter 3 ================================= %
+\chapter{制御系設計}
+\subsection{特性解析}
+第\ref{chapter_modeling}章で物理パラメータの決定と数式モデルの導出を行った。
+ここでは、決定したパラメータから、式(\ref{linear_k}),式(\ref{linear_general})の特性解析を行う。
+倒立振子の線形モデルの状態空間表現は以下のようになる。
+
+\begin{equation}
+    A,\ B,\ Cの値
+    \label{ABC}
+\end{equation}
+
+まず、行列$A$の安定判別を行う。$A$のすべての固有値に関して、実部が負であれば$A$は安定性行列である。
+すなわち、$A$の固有値$\lambda_{1}$, $\lambda_{2}$, $...$に対し、
+
+$$
+    \mbox{Re}[\lambda_{i}] < 0
+$$
+
+が成立すればよい。\MaTX{}で$A$の固有値を算出した結果を表\ref{eigen_A}に示す。
+
+\begin{table}[htbp]
+    \begin{center}
+        \caption{表\ref{eigen_A}: $A$の固有値}
+        \begin{tabular}{|c|c|} \hline
+            固有値 & Re[$\lambda_{i}$] \\ \hline \hline
+            0 & 0 \\ \hline
+            0 & 0 \\ \hline
+            0 & 0 \\ \hline
+            0 & 0 \\ \hline
+        \end{tabular}
+        \label{eigen_A}
+    \end{center}
+\end{table}
+
+表\ref{eigen_A}から、倒立振子系のシステムは不安定である。次に、システムの可制御性、可観測性を判別する。
+可制御性は、$n$をシステムの次数(倒立振子系のシステムの次数は$n = 4$)に対し、可制御性行列、
+
+$$
+    U_{C} =
+    \left[
+        \begin{array}{ccccc}
+            B  &  AB  &  A^2B  &  \dots  &  A^{n-1}B
+        \end{array}
+    \right]
+$$
+
+のランクがシステムの次数と等しければ満たされる。また、可観測性行列は、
+
+$$
+    U_{o} = 
+    \left[
+        \begin{array}{c}
+            C \\
+            CA \\
+            CA^2 \\
+            \vdots \\
+            CA^{n-1}
+        \end{array}
+    \right]
+$$
+
+であり、$U_{o}$のランクがシステムの次数と等しければ可観測となる。
+式(\ref{ABC})において、\MaTX{}を用いて$U_{c}$, $U_{o}$のランクを計算した結果、以下のようになった。
+
+$$
+    Uc, Uoのランク
+$$
+
+以上から、倒立振子系のシステムは不安定であり、可制御、可観測である。
+
+\subsection{制御システムの構成}
+図
+
+
+
+\subsection{状態フィードバック$F$の設計}
+
+\subsection{$\hat{A}$, $\hat{B}$, $\hat{C}$, $\hat{D}$, $\hat{J}$の設計}
+
+\subsection{制御システムの離散化}
+
+\subsection{振り上げ制御と安定化}
+
+
+
+% =============================== chapter 3 END =============================== %
