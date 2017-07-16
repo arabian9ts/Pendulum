@@ -17,7 +17,7 @@ Matrix Ahd,Bhd,Chd,Dhd,Jhd,F;	//パラメータ
 Matrix z;						//オブザーバ
 Real r_max, theta_min;			//角度と入力可能範囲の制限
 Real pre_r, pre_theta, pre_dt;	//過去の位置、角度、角速度
-Real l,M,m,a,f,g,c,J,n,k,E0;		//各定数
+Real l,M,m,a,f,g,c,J,n,k,E0,E;		//各定数
 //-----------------------------------
 //ここまで
 //-----------------------------------
@@ -59,13 +59,13 @@ Func void var_init()
 	smtime = 0.005;		// サンプリング周期 [s]
 	cmd = 0;			// 制御出力を抑制
 	count = 0;			// ロギングデータの数
-	data = Z(4,LOGMAX); // ロギングデータを保存する場所
+	data = Z(5,LOGMAX); // ロギングデータを保存する場所
 
 	
 	u = [0.0];			// 入力 [v]	
 	z = [0 0]';			//オブザーバの初期状態
 	
-	r_max = 0.1;
+	r_max = 0.09;
 	theta_min = 20.0;
 
 //	read M,m,J,g,l,f,a <- "params.mx" ;
@@ -82,7 +82,7 @@ Func void var_init()
 	c = 9.82E-5;
 	
 	E0 = 0.0;
-	k = 10000;
+	k = 1e2;
 	n = 0.2;
 	
 	pre_r = 0.0;
@@ -108,7 +108,7 @@ Func void on_task()
 	Matrix xh,xref;
 	Real r,theta,dr,dt,ddt;
 	Real sign_dtct, sat_ng;
-	Real E,v;
+	Real v;
 	Real firstInputTime,secondInputTime,stopTime;
 	//---------------------
 	//ここまで
@@ -149,7 +149,8 @@ Func void on_task()
 			y(2) = y(2) + 2.0*PI;
 		}
 	}
-	
+
+
 	//----------------------------
 	//入力とオブザーバの処理開始
 	//----------------------------
@@ -269,7 +270,7 @@ Func void on_task()
 	if(u(1) < -15.0){
 		u(1) = -15.0;
 	}
-	else if(20.0 < u(1)){
+	else if(15.0 < u(1)){
 		u(1) = 15.0;
 	}
 	
@@ -290,7 +291,8 @@ Func void on_task()
 		count++;
 		data(1:1, count) = u;
 		data(2:3, count) = y;
-		data(4:4, count) = [isSwinging];
+		data(4:4, count) = [E]';
+		data(5:5, count) = [isSwinging];
 	}
 }
 
@@ -313,10 +315,13 @@ Func void off_task_loop()
 		gotoxy(5, 12);
 		printf("入力 = %10.4f[N]", u(1));
 
-		gotoxy(5, 14);
+		gotoxy(5, 13);
+		printf("運動エネルギー = %10.4f[N]", E);
+
+		gotoxy(5, 15);
 		printf("データ数 = %4d, 時間 = %7.3f [s]", count, count*smtime);
 		if (rtIsTimeOut()) {
-			gotoxy(5, 18);
+			gotoxy(5, 19);
 			warning("\n時間切れ !\n");
 			break;
 		}
