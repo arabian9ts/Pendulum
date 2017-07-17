@@ -5,6 +5,10 @@ Real smtime;
 Matrix u, y;
 Array data;
 Integer isSwinging;
+Real r,theta,dr,dt,ddt;
+Real sign_dtct, sat_ng;
+Real v;
+Real firstInputTime,secondInputTime,stopTime;
 
 
 // センサとアクチュエータ関連の変数 (hardware.mmで使用される)
@@ -60,7 +64,6 @@ Func void var_init()
 	cmd = 0;			// 制御出力を抑制
 	count = 0;			// ロギングデータの数
 	data = Z(5,LOGMAX); // ロギングデータを保存する場所
-
 	
 	u = [0.0];			// 入力 [v]	
 	z = [0 0]';			//オブザーバの初期状態
@@ -68,115 +71,84 @@ Func void var_init()
 	r_max = 0.09;
 	theta_min = 20.0;
 
-//	read M,m,J,g,l,f,a <- "params.mx" ;
-
 	a = 0.49;
-        M = 1.001;
+    M = 1.001;
 	l = 0.12;
 	m = 0.038;
 	g = 9.8;
 	J = 3.9E-4;
-        f = 9.67;
-
-	
+    f = 9.67;
 	c = 9.82E-5;
-	
 	E0 = 0.0;
 	k = 1e2;
 	n = 0.2;
-	
-	pre_r = 0.0;
-	pre_theta = -180.0/180.0*PI;
-	pre_dt = 0.0;
 
-
-
-
-
-}
-
-// オンライン関数
-Func void on_task()
-{
-	Matrix sensor();
-	void actuator();
-
-	
-	//---------------------
-	//ローカル変数の宣言
-	//---------------------
-	Matrix xh,xref;
-	Real r,theta,dr,dt,ddt;
-	Real sign_dtct, sat_ng;
-	Real v;
-	Real firstInputTime,secondInputTime,stopTime;
-	//---------------------
-	//ここまで
-	//---------------------
-	
-	
-	y = sensor();		// センサから入力
-
-	
-	//-----------------------
-	//ローカル変数の初期化
-	//-----------------------
 	r = 0;
 	theta = -PI;
 	dr = 0.0;
 	dt = 0.0;
-	ddt = 0.0;
+	ddt = 0.0;	
+	pre_r = 0.0;
+	pre_theta = -180.0/180.0*PI;
+	pre_dt = 0.0;
+
 	E = 0.0;
 	isSwinging = 1;
 	firstInputTime = 2.0E-1;
 	secondInputTime = 4.0E-1;
 	stopTime = 5E-1;
-	//-----------------------
-	//ここまで
-	//-----------------------
+}
 
-	//角が正の時
-	if(0 < y(2)){
-		//角が180度オーバーの時負へ
-		while(PI < y(2)){
-			y(2) = y(2) - 2.0*PI;
+Func Real AngleWrapper(angle)
+Real angle;
+{
+	//角が正のとき
+	if(0 < angle{
+		//角が180度を超えた場合、負の領域に
+		while(PI < angle{
+			angle = angle - 2.0*PI;
 		}
 	}
-	//角が負の時
+	//角が負のとき
 	else{
-		//角が-180度オーバーの時正へ
-		while(y(2) < -PI){
-			y(2) = y(2) + 2.0*PI;
+		//角が-180度を超えた場合、正の領域に
+		while(angle < -PI){
+			angle = angle + 2.0*PI;
 		}
 	}
 
+	return angle;
+}
 
-	//----------------------------
-	//入力とオブザーバの処理開始
-	//----------------------------
-	xh = Chd*z + Dhd*y;			//状態の推定値
-	xref = [0.0 0.0 0.0 0.0]';		//状態の目標値
-	
-	
-		
-	//振り上げ安定化作業開始
-	r = y(1);
-	theta = y(2);	//センサーが測定した振子の角度
+Func Integer sign(sig)
+Real sig;
+{
+	if(sig == 0){
+		return 0;
+	}
+	else{
+		return Integer(sig/abs(sig));
+	}
+}
 
-	dr = (r - pre_r)/smtime;
-	dt = (theta - pre_theta)/smtime;
-	ddt = (dt - pre_dt)/smtime;
-	pre_r = r;
-	pre_theta = theta;
-	pre_dt = dt;
-	
-	isSwinging = 1;
-		
+Func Matrix InputLimitter(u)
+Matrix u;
+{
+	if(u(1) < -15.0){
+		u(1) = -15.0;
+	}
+	else if(15.0 < u(1)){
+		u(1) = 15.0;
+	}
+	return u;
+}
 
-	//---------------------------
-	//50[ms]まで励振運動させる
-	//---------------------------
-	
+Func void DefVoltage()
+{
+	/* --- calculate input voltage --- */
+
+	// 励振運動を必要とする場合
+	/* --- vibration block --- */
 	if(count*smtime <=firstInputTime){
 		u = [15.0];
 	}
@@ -186,105 +158,93 @@ Func void on_task()
 	else if(count*smtime <= stopTime){
 		u = [0.0];
 	}
-	//---------------------------
-	//励振運動終了
-	//---------------------------
-	
+	/* --- vibration block END --- */
 
-
-	//---------------------------
-	//励振運動後は通常の作業へ
-	//---------------------------
+	// 励振後の運動
+	/* --- swing up start --- */
 	else{	
-		//振子の角度が安定化を始める角度にあり且つ台車の位置が入力可能範囲にある場合
+		// 振子の角度が安定化を始める角度にある && 台車の位置が加速可能域内
 		if(abs(theta) <= (theta_min/180*PI) && abs(r) < r_max){
 			isSwinging = 0;
 		}
-/*
-		//振子の角度が安定化を始める角度にない場合
-		if((theta_min/180*PI) < abs(theta)){
-			isSwinging = 1;
-		}
-*/
 
-		//---------------
-		//振り上げ作業
-		//---------------
-		if(isSwinging == 1){
-	
-			//力学的エネルギーEの計算
+		/* --- swing up process --- */
+		if(isSwinging == 1) {
+			// 力学的エネルギー
 			E = (J+m*l*l)*dt*dt/2 + m*g*l*(cos(theta) -1);
-
-			
-		
 	
-			//sign(dt*cos(theta))の計算
-			sign_dtct = 0;
-			if(dt*cos(theta) < 0){
-				sign_dtct = -1;
-			}
-			else if(0 < dt*cos(theta)){
-				sign_dtct = 1;
-			}
-			else{
-				sign_dtct = 0;
-			}
+			// sign(dt*cos(theta))
+			sign_dtct = sign(dt*cos(theta));
 
-			//sat_ngの計算
+			// sat_ngの計算
 			sat_ng = max(-n*g, min(n*g, k*(E - E0)*sign_dtct));
-	
 
-			//台車の加速目標vの計算
+			// 台車の加速目標vの計算
 			v = -c*dt/(m*l*cos(theta)) + sat_ng;
 
-			//入力値uの計算
+			// 入力値uの計算
 			u = [(f*dr - m*l*dt*dt*sin(theta) + m*l*ddt*cos(theta) + (M + m)*v)/(a)];
 
-			/*
-			if(abs(theta) >= (theta_min/180*PI)){
-				u = [0];
-			}
-			*/	
-
-			//台車の位置が入力可能範囲外で且つ進行方向が台車の端側の場合
+			// 台車の位置が加速可能域外 && 進行方向が台車がはみ出す方向
 			if(r_max < abs(r) && 0 < r*u(1,1)){
 				u = [0];
 			}
 		}
-		//-------------
-		//安定化作業
-		//-------------
+		// 安定化に移行する場合
 		else{
 			u = [F*(xref - xh)];
-		}	
-		//-------------------------
-		//ここまで
-		//-------------------------
+		}
 	}
-	//-----------------------------
-	//振り上げ安定化制御ここまで
-	//-----------------------------
-		
+	/* --- swing up process END --- */
+
+	// 入力電圧を制限
+	u = InputLimitter(u);
+
+	/* --- calculate input voltage END --- */
+}
+
+// オンライン関数
+Func void on_task()
+{
+	Matrix sensor();
+	void actuator();
+	Matrix xh,xref;
+
+	// センサから入力
+	y = sensor();
+	xref = [0.0 0.0 0.0 0.0]';
+
+	// 角度の補正
+	y(2) = AngleWrapper(y(2));
+
+	// 状態の推定値
+	xh = Chd*z + Dhd*y;
 	
-	//入力電圧の制限
-	if(u(1) < -15.0){
-		u(1) = -15.0;
-	}
-	else if(15.0 < u(1)){
-		u(1) = 15.0;
-	}
+	r = y(1);
+	theta = y(2);
+
+	/* --- 直前の情報 --- */
+	dr = (r - pre_r)/smtime;
+	dt = (theta - pre_theta)/smtime;
+	ddt = (dt - pre_dt)/smtime;
+	pre_r = r;
+	pre_theta = theta;
+	pre_dt = dt;
+	/* --- 直前の情報 END --- */
 	
-	z = Ahd*z + Bhd*y + Jhd*u;		//オブザーバの状態の更新
-	//---------------------------------
-	//入力とオブザーバの処理ここまで
-	//---------------------------------
+	isSwinging = 1;
 	
+	// 入力する電圧の決定
+	DefVoltage();
+	
+	// オブザーバの状態の更新
+	z = Ahd*z + Bhd*y + Jhd*u;
 	
 	// リハーサル中でなければ
 	if (cmd == 1 && ! rtIsRehearsal()) {
-		actuator(u(1));			// アクチュエータへ出力
+		// アクチュエータへ出力
+		actuator(u(1));
 	}
-
 
 	// データのロギング
 	if (cmd == 1 && count < LOGMAX) {
@@ -357,8 +317,10 @@ Func void machine_ready()
 {
 	void sensor_init(), actuator_init();
 
-	sensor_init();                  // センサの初期化
-	actuator_init();                // アクチュエータの初期化
+	// センサの初期化
+	sensor_init();
+	// アクチュエータの初期化
+	actuator_init();
 
 	gotoxy(5,5);
 	printf("台車の初期位置 : レールの中央");
