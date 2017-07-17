@@ -238,6 +238,107 @@ $$
 である。
 
 \subsection{振り上げ制御と安定化}
+台車と振子の運動方程式は、式(\ref{del_Fh}), 式(\ref{del_Fh_Fv})から、
+
+$$
+    \begin{array}{c}
+        (M + m) \ddot{r} + (ml\cos{\theta}) \ddot{\theta} 
+            = au + (ml\sin{\theta}) \dot{\theta}^2 - f \dot{r} \\
+        ml\cos{\theta} \ddot{r} + (J + ml^2) \ddot{\theta} 
+            = mgl\sin{\theta} -c \dot{\theta}
+    \end{array}
+$$
+
+で与えられる。振子が鉛直上向きのときを基準とする振子の力学的エネルギーは、
+
+\begin{equation}
+    E = \frac{1}{2} \left( J + ml^2 \right) \ddot{\theta}
+        + mgl \left( \cos{\theta} - 1 \right)
+\end{equation}
+
+であり、力学的エネルギーの時間微分は、
+
+\begin{equation}
+    \frac{dE}{dt} = (J + ml) \theta \ddot{\theta}
+                    - mgl \dot{\theta} \sin{\theta}
+    \label{dEdt}
+\end{equation}
+
+となる。振り上げ処理を行うため、入力$u$を次のように計算する。
+
+\begin{equation}
+    u = \frac{1}{a}
+        \left(
+            f \dot{r} - ml \sin{\theta} \dot{\theta}^2 + ml \cos{\theta} \ddot{\theta}
+            + (M + m)v
+        \right)
+    \label{swing_u}
+\end{equation}
+
+\begin{equation}
+    v = - \frac{c \dot{\theta}}{ml\cos{\theta}} 
+        + k(E - E_{0}) \mbox{sign}(\dot{\theta}\cos{\theta})
+    \label{swing_v}
+\end{equation}
+
+$\mbox{sign}$は符号関数であり、引数が$0$のとき$0$を、正のとき$1$を、負のとき$-1$を返す。
+式(\ref{del_Fh})に式(\ref{swing_u})を代入すると、
+
+\begin{equation}
+    \ddot{r} = v
+    \label{ddot_r}
+\end{equation}
+
+を得る。式(\ref{ddot_r}), 式(\ref{swing_v})を式(\ref{del_Fh_Fv})に代入すると、
+
+\begin{equation}
+    (J + ml^2) \ddot{\theta} = mgl \sin{\theta}
+                - ml \cos{\theta} (k(E - E_{0}) \mbox{sign} (\dot{\theta} \cos{\theta}))    
+\end{equation}
+
+を得る。さらに、これを式(\ref{dEdt})に代入すると、
+
+\begin{equation*}
+    \begin{split}
+        \frac{dE}{dt} &= -ml \dot{\theta} \cos{\theta} (k(E - E_{0}) 
+                            \mbox{sign} (\dot{\theta} \cos{\theta})) \\
+                      &= -mlk(E - E_{0}) \mbox{sign} (\dot{\theta} \cos{\theta}) \dot{\theta} (\cos{\theta})
+    \end{split}
+\end{equation*}
+
+となる。リアプノフ関数として、
+
+\begin{equation}
+    V = \frac{(E - E_{0})^2}{2}
+\end{equation}
+
+を考えると、$V$の時間微分、
+
+\begin{equation}
+    \begin{split}
+        \frac{dV}{dt} &= (E - E_{0}) \frac{dE}{dt} \\
+                      &= -mlk(E - E_{0})^2 \mbox{sign} (\dot{\theta} \cos{\theta}) \dot{\theta} (\cos{\theta}) \leq 0
+    \end{split}
+\end{equation}
+
+これより、$\dot{\theta} \cos{\theta} \neq 0$のとき、$V$は減少して$0$に収束し、$E$は$E_{0}$に収束する。
+実際の制御では、台車の加速度目標$v$を制限し、
+
+$$
+    u = \frac{1}{a}
+        \left(
+            f \dot{r} - ml \sin{\theta} \dot{\theta}^2 + ml \cos{\theta} \ddot{\theta}
+            + (M + m)v
+        \right)
+$$
+
+$$
+    v = - \frac{c \dot{\theta}}{ml\cos{\theta}} 
+        + \mbox{sat}_{ng} (k(E - E_{0}) \mbox{sign}(\dot{\theta}\cos{\theta}))
+$$
+
+とする。ただし、$\mbox{sat}_{ng}$は最小値$-ng$, 最大値$ng$の飽和関数である。また、$n$は
+重力加速度と台車の加速度の比である。さらに、$k$を大きくすればより早く$E$が$E_{0}$に収束する。
 
 
 
