@@ -70,15 +70,172 @@ $$
 以上から、倒立振子系のシステムは不安定であり、可制御、可観測である。
 
 \subsection{制御システムの構成}
-図
+図\ref{controller_system}に、倒立振子系に対する制御システムの構成を示す。
 
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{controller_system.eps}
+        \caption{図\ref{controller_system}: 制御システムの構成}
+        \label{controller_system}
+    \end{center}
+\end{figure}
+
+制御系のフィードバックによる入力は、
+
+$$
+    u = -F \left( x - x_{ref} \right)
+$$
+
+ただし、
+
+$$
+    x_{ref} =
+    \left[
+        \begin{array}{c}
+            y_{c} \\
+            0 \\
+            0 \\
+            0
+        \end{array}
+    \right]
+$$
+
+であり、$y_{C}$は指定された台車位置を表す。本実験では、$\dot{r}$, $\dot{\theta}$の検出器は
+用いず、状態$x$は推定値$\hat{x}$において、
+
+\begin{equation}
+    x = \lim_{t \to \infty} \hat{x}
+    \label{definition_x}
+\end{equation}
+
+とする。また、式(\ref{definition_x})を満足する最小次元オブザーバ、
+
+\begin{equation}
+    \hat{z} = \hat{A}z + \hat{B}y + \hat{J}u
+    \label{z_hat}
+\end{equation}
+
+\begin{equation}
+    \hat{x} = \hat{C}z + \hat{D}y
+    \label{x_hat}
+\end{equation}
+
+を用いる。ここで、オブザーバの次数は$2$であり、設計すべき制御システムは以下のようになる。
+
+\begin{itemize}
+    \item $F(1 \times 4)$
+    \item $\hat{A}(2 \times 2)$, $\hat{B}(2 \times 2)$, 
+    $\hat{J}(2 \times 1)$, $\hat{C}(4 \times 2)$, $\hat{D}(4 \times 2)$
+\end{itemize}
 
 
 \subsection{状態フィードバック$F$の設計}
+$F$は、システムを安定化する状態フィードバック、
+
+\begin{equation}
+    u = -Fx
+    \label{feedback_u}
+\end{equation}
+
+を満たすように求める。式(\ref{feedback_u})をLQ問題として解くため、$2$次形式評価関数、
+
+\begin{equation}
+    J = \int_{0}^{\infty}
+    \left(
+        x^{T}Qx + Ru^2
+    \right)
+    dt
+    \label{eval2_J}
+\end{equation}
+
+\begin{equation}
+    Q = \mbox{diag}(q_{1}^2, q_{2}^2, q_{3}^2, q_{4}^2), R = 1
+    \label{eval2_Q}
+\end{equation}
+
+を考える。ここで、$\mbox{diag}(\dots)$は、各引数を固有値にもつ対角行列を表す。これは、
+
+\begin{equation}
+    J = \int_{0}^{\infty}
+    \left(
+        q_{1}^2 r^2 + q_{2}^2 \theta^2 + q_{3}^2 \dot{r}^2 + q_{4}^2 \dot{\theta}^2 + u^2
+    \right)
+    dt
+\end{equation}
+
+と表せるから、$q_{1}$, $q_{2}$, $q_{3}$, $q_{4}$はそれぞれ、台車位置$r$, 振子角度$\theta$,
+台車速度$\dot{r}$, 振子角速度$\dot{\theta}$に対する重み係数である。
+式(\ref{eval2_J}), 式(\ref{eval2_Q})を最小にする$F$は、リッカチ方程式、
+
+$$
+    A^{T}P + PA - PBR^{-1}B^{T}P + Q = 0
+$$
+
+の解$(P > 0)$に対し、
+
+$$
+    F = R^{-1}B^{T}P
+$$
+
+で与えられる。
 
 \subsection{$\hat{A}$, $\hat{B}$, $\hat{C}$, $\hat{D}$, $\hat{J}$の設計}
+式(\ref{z_hat}), 式(\ref{x_hat})が式(\ref{definition_x})を満足するための十分条件は、
+ある行列$U(1 \times 4)$が存在して、
+
+$$
+    \begin{array}{c}
+        UA = \hat{A}U + \hat{B}C \\
+        UB = \hat{J} \\
+        I = \hat{C}U + \hat{D}C
+    \end{array}
+$$
+
+であり、かつ$\hat{A}$が安定性行列であることである。これらの条件を満足するオブザーバを設計するため、
+Gopinathの方法を用いる。
 
 \subsection{制御システムの離散化}
+式(\ref{feedback_u}), 式(\ref{z_hat}), 式(\ref{x_hat})で示した$u,\ \hat{z},\ \hat{x}$は、
+連続時間上で設計される制御器である。そこで、計算機で制御器を表現するためこれらの離散時間化を行う。
+各サンプリングの間隔を$\Delta$とすると、
+
+$$
+    \begin{array}{c}
+        u[k] = -F \hat{x}[k] \\
+        z[k + 1] = \hat{A}_{d}z[k] + \hat{B}_{d}y[k] + \hat{J}_{d}u[k] \\
+        \hat{x}[k] = \hat{C}_{d}z[k] + \hat{D}_{d}y[k]
+    \end{array}
+$$
+
+と表せる。ただし、$k = 0, 1, \dots$において、
+
+$$
+    x_{ref} = 
+    \left[
+        \begin{array}{cc}
+            \hat{A}_{d}  &  \left[
+                                \begin{array}{cc}
+                                    \hat{B}_{d}  &  \hat{J}_{d}
+                                \end{array}
+                            \right] \\
+            0            &  I_{3}
+        \end{array}
+    \right]
+    =
+    \exp \Delta
+    \left[
+        \begin{array}{cc}
+            \hat{A}  &  \left[
+                            \begin{array}{cc}
+                                \hat{B}  &  \hat{J}
+                            \end{array}
+                        \right] \\
+            0        &  I_{3}
+        \end{array}
+    \right]
+$$
+
+である。
 
 \subsection{振り上げ制御と安定化}
 
