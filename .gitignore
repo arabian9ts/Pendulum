@@ -6,8 +6,17 @@ bin/
 .matx_history
 plot*
 simulation/matx/.matx_history
-report/*
 
-!report/ref/
+### author maeda ###
+report/*
+!report/eps/*
 !report/*.tex
-!report/document/
+!report/document/*
+
+### author takikawa ###
+report_takikawa/*.aux
+report_takikawa/*.dvi
+report_takikawa/*.lof
+report_takikawa/*.log
+report_takikawa/*.lot
+report_takikawa/*.toc

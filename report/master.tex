@@ -1,0 +1,54 @@
+\documentclass[a4j,11pt,twoside]{jbook}
+\usepackage{ascmac}
+\usepackage{amsmath}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{matx}
+\usepackage{manyfloat}
+\usepackage{caption}
+\usepackage{geometry}
+\captionsetup{labelformat=empty,labelsep=none}
+\geometry{left=25mm,right=25mm,top=28mm,bottom=25mm}
+
+\begin{document}
+
+% --- title page --- %
+\title{倒立振子の安定化制御}
+\author{前田 拓}
+\date{2017年7月12日}
+\maketitle
+
+% --- index --- %
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\pagenumbering{arabic}
+
+% --- main --- %
+
+% ----- chapter 1 ----- %
+\input{introduce.tex}
+% --- Chapter 1 END --- %
+
+% ----- chapter 2 ----- %
+\input{modeling.tex}
+% --- Chapter 2 END --- %
+
+% ----- chapter 3 ----- %
+\input{design.tex} 
+% --- Chapter 3 END --- %
+
+% ----- chapter 4 ----- %
+\input{simulation.tex}
+% --- Chapter 4 END --- %
+
+% ----- chapter 5 ----- %
+\input{experiment.tex} 
+% --- Chapter 5 END --- %
+
+% ----- chapter 6 ----- %
+\input{ending.tex} 
+% --- Chapter 6 END --- %
+
+% --- main END ---%
+\end{document}
