@@ -47,6 +47,9 @@ Func void main()
     t1 = 5.0;
     h =  0.01;
     {T,X} = Ode(t0,t1,x0,vdpol,"",h);
-    mgplot(1,T,X(1,:),{"th"});
-    mgreplot(1,data(1,:),data(4,:) .+ PI);
+    mgplot(1,T,X(1,:),{"sim_th"});
+    mgreplot(1,data(1,:),data(4,:) .+ PI, {"actual_th"});
+    mgplot_grid(1);
+    mgplot_xlabel(1,"t[s]");
+    mgplot_ylabel(1,"th[rad]");
 }
