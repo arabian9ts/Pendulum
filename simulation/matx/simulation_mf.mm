@@ -45,6 +45,7 @@ Func void main()
     t1 = 0.5;
     h =  0.01;
     {T,X} = Ode(t0,t1,x0,vdpol,"",h);
+    print [[T][X]] >> "step13_correct.mat";
     mgplot(1,T,X(1,:),{"dr"});
     mgreplot(1,data(1,:),data(3,:));
 }
