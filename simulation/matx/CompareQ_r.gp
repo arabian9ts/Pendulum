@@ -1,0 +1,5 @@
+set xlabel "t[s]"
+set ylabel "r[m]"
+plot "CompareQ(6500).mat" using 1:2 with lines linewidth 2 linecolor rgbcolor "red" title "Q1 r"
+replot "CompareQ(5600).mat" using 1:2 with lines linewidth 2 linecolor rgbcolor "green" title "Q2 r"
+replot "CompareQ(6600).mat" using 1:2 with lines linewidth 2 linecolor rgbcolor "blue" title "Q3 r"
