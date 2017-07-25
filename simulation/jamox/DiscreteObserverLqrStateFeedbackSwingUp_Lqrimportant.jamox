@@ -62,7 +62,7 @@
             <param name="input_variable">u</param>
             <param name="output_variable">y</param>
             <param name="state_variable">x</param>
-            <param name="initial_state">[0 PI+0.001 0 0]'</param>
+            <param name="initial_state">[0, -PI, 0, 0]'</param>
             <param name="has_direct_feedthrough">false</param>
             <param name="parameters">Real a,M,l,m,g,c,J,f;</param>
             <param name="update_function">a = 0.49;%nM = 1.00;%nl = 0.12;%nm = 0.038;%ng = 9.8;%nc = 9.82E-5;%nJ = 3.9E-4;%nf = 9.67;</param>
@@ -266,9 +266,9 @@
             <param name="sampling_interval">ZOH.samplingInterval</param>
             <param name="parameters">Real kk, n;%nReal pre_r, pre_th, pre_dr, pre_dth, pre_ddth;%nInteger swinging;</param>
             <param name="update_function">kk = 7500;%nn = 4.0;</param>
-            <param name="output_equation_function">Real M, m, J, g, l, f, a;%nReal r, th,dr, dth, ddr, ddth;%nReal E0, E, r_max, th_min;%nMatrix F;%n%nE0 = 0;%nr_max = 0.08;%nth_min = 15.0;%n%nM = Pendulum.M;%nm = Pendulum.m;%nJ = Pendulum.J;%nl = Pendulum.l;%nf = Pendulum.f;%na = Pendulum.a;%ng = Pendulum.g;%nF = mStateFeedback.F;%n%nr = xx(1,1);%nth = xx(2,1);%ndr = xx(3,1);%ndth = xx(4,1);%n%nif (isSolverTrial() == 0 &amp;&amp; abs(th) &lt;= th_min*PI/180 &amp;&amp; abs(r) &lt; r_max){%n	swinging = 0;%n}%nif (isSolverTrial() == 0 &amp;&amp; abs(th) &gt; th_min*PI/180){%n	swinging = 1;%n} %n%n%nif(swinging == 1){%n	E = (J + m*l*l)*dth*dth/2 + m*g*l*(cos(th) - 1);%n	ddr = max(-n*g, min(n*g, kk*(E-E0)*sgn(dth*cos(th))));%n	%n	if(isSolverTrial() == 0){%n	pre_ddth = ddth = (dth - pre_dth)/samplingInterval;%n	pre_dth = dth;%n	} else {%n		ddth = pre_ddth;%n	}%n%n	u = [((M+m)*ddr + m*l*(ddth*cos(th)-dth*dth*sin(th)) + f*dr)/a];%n%n	if(abs(r) &gt; r_max &amp;&amp; r*u(1,1)&gt;0){%n		u = [0];%n	}%n} else {%n	u = -F*xx(5:8,1);%n}</param>
+            <param name="output_equation_function">Real M, m, J, g, l, f, a;%nReal r, th,dr, dth, ddr, ddth;%nReal E0, E, r_max, th_min;%nMatrix F;%n%nE0 = 0;%nr_max = 0.09;%nth_min = 20.0;%n%nM = Pendulum.M;%nm = Pendulum.m;%nJ = Pendulum.J;%nl = Pendulum.l;%nf = Pendulum.f;%na = Pendulum.a;%ng = Pendulum.g;%nF = mStateFeedback.F;%n%nr = xx(1,1);%nth = xx(2,1);%ndr = xx(3,1);%ndth = xx(4,1);%n%nif (isSolverTrial() == 0 &amp;&amp; abs(th) &lt;= th_min*PI/180 &amp;&amp; abs(r) &lt; r_max){%n	swinging = 0;%n}%nif (isSolverTrial() == 0 &amp;&amp; abs(th) &gt; th_min*PI/180){%n	swinging = 1;%n} %n%n%nif(swinging == 1){%n	E = (J + m*l*l)*dth*dth/2 + m*g*l*(cos(th) - 1);%n	ddr = max(-n*g, min(n*g, kk*(E-E0)*sgn(dth*cos(th))));%n	%n	if(isSolverTrial() == 0){%n	pre_ddth = ddth = (dth - pre_dth)/samplingInterval;%n	pre_dth = dth;%n	} else {%n		ddth = pre_ddth;%n	}%n%n	u = [((M+m)*ddr + m*l*(ddth*cos(th)-dth*dth*sin(th)) + f*dr)/a];%n%n	if(abs(r) &gt; r_max &amp;&amp; r*u(1,1)&gt;0){%n		u = [0];%n	}%n} else {%n	u = -F*xx(5:8,1);%n}</param>
             <param name="utility_functions"></param>
-            <param name="initialize_function">swinging = 1;%npre_r = 0;%npre_th = PI;%npre_dr = 0;%npre_dth = 0;%npre_ddth = 0;</param>
+            <param name="initialize_function">swinging = 1;%npre_r = 0;%npre_th = -PI;%npre_dr = 0;%npre_dth = 0;%npre_ddth = 0;</param>
             <figure x="559" y="269" height="69" width="125" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
@@ -342,27 +342,6 @@
             </figure>
             <class>math_branch_point</class>
         </block>
-        <block name="" id="98">
-            <port id="99" name="u342" type="input">
-                <figure x="1608" y="284" angle="0"/>
-            </port>
-            <port id="100" name="y343" type="output">
-                <figure x="1613" y="289" angle="90"/>
-            </port>
-            <port id="101" name="y344" type="output">
-                <figure x="1613" y="289" angle="90"/>
-            </port>
-            <figure x="1616" y="287" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
-                <param name="color_border">[0, 0, 0]</param>
-                <param name="color_background">[0, 0, 0]</param>
-                <param name="color_foreground">[0, 0, 0]</param>
-                <param name="color_portfigure">[0, 0, 0]</param>
-                <param name="color_blocklabel">[0, 0, 0]</param>
-                <param name="icon"></param>
-                <param name="auto_port_layout_enabled">true</param>
-            </figure>
-            <class>math_branch_point</class>
-        </block>
         <block name="" id="110">
             <port id="111" name="u355" type="input">
                 <figure x="984" y="501" angle="180"/>
@@ -384,17 +363,38 @@
             </figure>
             <class>math_branch_point</class>
         </block>
-        <block name="" id="266">
-            <port id="267" name="u267" type="input">
-                <figure x="1808" y="330" angle="0"/>
+        <block name="" id="507">
+            <port id="508" name="u508" type="input">
+                <figure x="1645" y="508" angle="180"/>
             </port>
-            <port id="268" name="y268" type="output">
-                <figure x="1818" y="330" angle="0"/>
+            <port id="509" name="y509" type="output">
+                <figure x="1635" y="508" angle="180"/>
             </port>
-            <port id="269" name="y269" type="output">
-                <figure x="1813" y="335" angle="90"/>
+            <port id="510" name="y510" type="output">
+                <figure x="1640" y="513" angle="90"/>
             </port>
-            <figure x="1816" y="333" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="1643" y="511" height="10" width="10" angle="0" horizontalReflect="true" verticalReflect="false">
+                <param name="color_border">[0, 0, 0]</param>
+                <param name="color_background">[0, 0, 0]</param>
+                <param name="color_foreground">[0, 0, 0]</param>
+                <param name="color_portfigure">[0, 0, 0]</param>
+                <param name="color_blocklabel">[0, 0, 0]</param>
+                <param name="icon"></param>
+                <param name="auto_port_layout_enabled">true</param>
+            </figure>
+            <class>math_branch_point</class>
+        </block>
+        <block name="" id="518">
+            <port id="519" name="u519" type="input">
+                <figure x="1840" y="568" angle="0"/>
+            </port>
+            <port id="520" name="y520" type="output">
+                <figure x="1850" y="568" angle="0"/>
+            </port>
+            <port id="521" name="y521" type="output">
+                <figure x="1845" y="573" angle="90"/>
+            </port>
+            <figure x="1848" y="571" height="10" width="10" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[0, 0, 0]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -407,12 +407,12 @@
         </block>
         <block name="" id="263">
             <port id="264" name="u264" type="input">
-                <figure x="2028" y="680" angle="0"/>
+                <figure x="2057" y="704" angle="0"/>
             </port>
-            <param name="matrix_file_name">C:\Users\takikawa\Documents\jamox\y.mat</param>
+            <param name="matrix_file_name">C:\Users\maeda\java\Pendulum\simulation\jamox\swing\y.mat</param>
             <param name="file_type">mat</param>
             <param name="exportable">true</param>
-            <figure x="2072" y="683" height="40" width="83" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="2101" y="707" height="40" width="83" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -606,7 +606,7 @@
         </block>
         <block name="" id="258">
             <port id="259" name="u259" type="input">
-                <figure x="1975" y="330" angle="0"/>
+                <figure x="2043" y="568" angle="0"/>
             </port>
             <param name="xGridInterval">2.0</param>
             <param name="xMaximum">10.0</param>
@@ -619,11 +619,9 @@
             <param name="exportable">true</param>
             <param name="fontSize">11</param>
             <param name="grid">true</param>
-            <param name="lineNames[1/2]">y1</param>
-            <param name="lineNames[2/2]">y2</param>
             <param name="lineWidth">1</param>
             <param name="title"></param>
-            <figure x="2007" y="333" height="58" width="58" angle="0" horizontalReflect="false" verticalReflect="false">
+            <figure x="2075" y="571" height="58" width="58" angle="0" horizontalReflect="false" verticalReflect="false">
                 <param name="color_border">[0, 0, 0]</param>
                 <param name="color_background">[255, 255, 255]</param>
                 <param name="color_foreground">[0, 0, 0]</param>
@@ -741,33 +739,6 @@
                 <auto>DEFAULT</auto>
             </figure>
         </link>
-        <link to="99" from="3">
-            <param name="link_source_label"></param>
-            <param name="link_destination_label"></param>
-            <figure distance="50">
-                <param name="color_linkfigure">[0, 0, 0]</param>
-                <param name="link_mode">AUTO</param>
-                <auto>DEFAULT</auto>
-            </figure>
-        </link>
-        <link to="42" from="101">
-            <param name="link_source_label"></param>
-            <param name="link_destination_label"></param>
-            <figure distance="50">
-                <param name="color_linkfigure">[0, 0, 0]</param>
-                <param name="link_mode">AUTO</param>
-                <auto>DEFAULT</auto>
-            </figure>
-        </link>
-        <link to="111" from="43">
-            <param name="link_source_label"></param>
-            <param name="link_destination_label"></param>
-            <figure distance="50">
-                <param name="color_linkfigure">[0, 0, 0]</param>
-                <param name="link_mode">AUTO</param>
-                <auto>DEFAULT</auto>
-            </figure>
-        </link>
         <link to="164" from="113">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
@@ -858,7 +829,7 @@
                 <auto>DEFAULT</auto>
             </figure>
         </link>
-        <link to="267" from="100">
+        <link to="111" from="43">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
             <figure distance="50">
@@ -867,7 +838,7 @@
                 <auto>DEFAULT</auto>
             </figure>
         </link>
-        <link to="259" from="268">
+        <link to="508" from="3">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
             <figure distance="50">
@@ -876,7 +847,34 @@
                 <auto>DEFAULT</auto>
             </figure>
         </link>
-        <link to="264" from="269">
+        <link to="42" from="509">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="519" from="510">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="259" from="520">
+            <param name="link_source_label"></param>
+            <param name="link_destination_label"></param>
+            <figure distance="50">
+                <param name="color_linkfigure">[0, 0, 0]</param>
+                <param name="link_mode">AUTO</param>
+                <auto>DEFAULT</auto>
+            </figure>
+        </link>
+        <link to="264" from="521">
             <param name="link_source_label"></param>
             <param name="link_destination_label"></param>
             <figure distance="50">
