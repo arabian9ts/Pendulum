@@ -1,4 +1,4 @@
-
+Matrix u;
 Func Matrix diff_eqs_nonliner(t, xx, u)
 Real t;
 Matrix xx, u;
@@ -7,17 +7,19 @@ Matrix xx, u;
   Matrix xxdot, z;
   Matrix tmp, tmp2, tmp3;
   Real a, m, M, g, l, f, c, J;
+  Real k;
 
-  a = 0.73;
+  a = 0.49;
   m = 0.038;
-  M = 1.49;
+  M = 1.51;
   g = 9.8;
-  l = 0.13;
-  f = 15.10;
-  c = 2.1e-4;
-  J = 4.5e-4;
+  l = 0.12;
+  f = 16.5;
+  c = 9.82e-5;
+  J = 3.9e-4;
+  k = 2500;
 
-  u = [0];
+  u = k*(0.1 - xx(1));
 
 
   K=[[ M+m,           m*l*cos(xx(2)) ]
@@ -102,7 +104,7 @@ Func void main()
   Matrix x0,T,X;
   Matrix data;
 
-  x0=trans([0 10.0*PI/(180) 0 0]);
+  x0=trans([0 0 0 0]);
   t0=0.0;
   t1=10.0;
   h=0.01;
@@ -110,10 +112,11 @@ Func void main()
   // print diff_eqs_nonliner(1,x0,[0]);
 
   {T,X}=Ode(t0,t1,x0,diff_eqs_liner_under,"",h);
-
+/*
   read data << "restep13.mat";
 
   mgplot(1,T,X,{"r","th","dr","dth"});
   mgreplot(1,data(1,:),data(3,:));
   mgplot_eps(1,"nonliner.eps");
+*/
 }
