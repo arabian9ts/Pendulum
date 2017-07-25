@@ -45,7 +45,7 @@ Func void main()
     //read data << "restep13.mat";
     x0=[0 0]';
     t0 = 0.0;
-    t1 = 2;
+    t1 = 1.5;
     h =  0.01;
     {T,X} = Ode(t0,t1,x0,vdpol,"",h);
 
