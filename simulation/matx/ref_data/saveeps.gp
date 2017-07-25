@@ -1,4 +1,4 @@
-set terminal postscript eps enhanced color "Arial,22"
+set terminal postscript eps enhanced color linewidth 1 "Arial,22"
 filename = sprintf("%s.eps",name)
 set output filename # ファイル名で保存場所を指定可能
 replot                    # 必要
