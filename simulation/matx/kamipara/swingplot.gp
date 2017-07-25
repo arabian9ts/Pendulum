@@ -1,5 +1,5 @@
 set  terminal windows enhanced 0
-plot "expK1E3N031.mat" using 1:3 with lines linewidth 2 linecolor rgbcolor "red" title "r"
+plot "expK1E3N031.mat" using 1:3 with lines linewidth 2 linecolor rgbcolor "red" title "r1"
 replot "expK1E4N031.mat" using 1:3 with lines linewidth 2 linecolor rgbcolor "green" title "r2"
 replot "expK1E5N031.mat" using 1:3 with lines linewidth 2 linecolor rgbcolor "blue" title "r3"
 set  terminal windows enhanced 1
