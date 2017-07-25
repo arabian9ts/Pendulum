@@ -8,32 +8,57 @@
 
 \begin{table}[htbp]
     \begin{center}
+<<<<<<< HEAD
         \caption{表\ref{sim_Q}: シミュレーションに用いるパラメータの種類}
         \begin{tabular}{|c|c|c|c|c|} \hline
             パターン & 重み行列$Q$ & オブザーバの極$P$ & サンプリング周期$dt$ \\ \hline \hline
             パターン1 & (1E6, 1E5, 1, 1) & (-23, -23) & 0.005 \\ \hline
             パターン2 & (1E5, 1E6, 1, 1) & (-23, -23) & 0.005 \\ \hline
             パターン3 & (1E6, 1E6, 1, 1) & (-23, -23) & 0.005 \\ \hline
+=======
+        \caption{表\ref{sim_Q_params}: シミュレーションに用いるパラメータの種類}
+        \begin{tabular}{|c|c|c|c|} \hline
+            重み行列$Q$ & オブザーバの極$P$ & サンプリング周期$dt$[s] \\ \hline \hline
+            $Q_1$(1E6, 1E5, 1, 1) & $P_1$(-23, -23) & $dt_1$:0.005 \\ \hline
+            $Q_2$(1E5, 1E6, 1, 1) & $P_2$(-23, -23) & $dt_2$:0.005 \\ \hline
+            $Q_3$(1E6, 1E6, 1, 1) & $P_3$(-23, -23) & $dt_3$:0.005 \\ \hline
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
         \end{tabular}
         \label{sim_Q}
     \end{center}
 \end{table}
 
+<<<<<<< HEAD
 表\ref{sim_Q}に従ってシミュレーションを行った結果を図に示す。
+=======
+表\ref{sim_Q}に従ってシミュレーションを行った結果を図\ref{sim_Q_r}, 図\ref{sim_Q_th}に示す。
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 
 \begin{figure}[htbp]
     \begin{minipage}{0.5\hsize}
         \begin{center}
+<<<<<<< HEAD
             \includegraphics[width=1.0\linewidth]{case1_r.eps}
             \caption{図\ref{case01_r}: パターン1の台車位置}
             \label{case01_r}
+=======
+            \includegraphics[width=1.0\linewidth]{CompareQ_r.eps}
+            \caption{図\ref{sim_Q_r}: シミュレーション01の台車位置}
+            \label{sim_Q_r}
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
         \end{center}
     \end{minipage}
     \begin{minipage}{0.5\hsize}
         \begin{center}
+<<<<<<< HEAD
             \includegraphics[width=1.0\linewidth]{case1_th.eps}
             \caption{図\ref{case01_th}: パターン1の振子角度}
             \label{case01_th}
+=======
+            \includegraphics[width=1.0\linewidth]{CompareQ_th.eps}
+            \caption{図\ref{sim_Q_th}: シミュレーション01の振子角度}
+            \label{sim_Q_th}
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
         \end{center}
     \end{minipage}
 \end{figure}

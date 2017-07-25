@@ -1,0 +1,32 @@
+### TASKS ###
+
++ comparison data replot
++ fix graph label
++ experimental comparison data plot
++ swing up simulation plot
++ feedback simulation plot -> fix xrange until t=1.5
++ merge theory presen file
++ step response comparison -> bold line and high contrast
+
+### TASKS END ###
+
+
+
+### COMPARISON DATA SET ###
+
+Q_comparison P=(-23, -23) dt=0.005
+    case3 & case5 & case11
+
+P_comparison Q=(6, 5, 0, 0) dt=0.005
+    case3 & case4
+
+dt_comparison Q=(6, 5, 0, 0) P=(-23, -23)
+    case1 & case3
+
+
+
+### FIX LABEL ###
+
+res/freePendulum.eps -> string
+
+### FIX LABEL END ###

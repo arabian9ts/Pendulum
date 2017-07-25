@@ -23,6 +23,7 @@
 % 本文
 \chapter{はじめに}
 <<<<<<< HEAD
+<<<<<<< HEAD
 \section{実験目的}
 本実験の目的は倒立振子の安定化制御の制御系の設計を状態空間法を用いて行うことにより、線形時不変システムに対する設計法を習得することである。
 \section{制御対象と制御目的}
@@ -317,6 +318,45 @@ c_1 &  0 \\
 			\end{figure}
 
 \chapter{モデリング}
+=======
+	\section{実験目的}
+		本実験の目的は倒立振子の安定化制御の制御系の設計を状態空間法を用いて行うことにより、線形時不変システムに対する設計法を習得することである。
+	\section{制御対象と制御目的}
+		\subsection{倒立振子系}
+			制御対象として、図\ref{fig:倒立振子系}に示されるような倒立振子系を考える。モノレール上に台車が置かれ、台車上のモノレールと直角な軸に一本の棒が取り付けられ、棒はその軸まわりに自由に回転できる。台車はベルトとプーリを介して、モータにより駆動され、モノレール上を走行できる。すなわち、棒（振子）は鉛直線とモノレールにより定まる平面に拘束されて、台車によって動かされるようになっている。
+
+		\subsection{観測出力と操作入力}
+			倒立振子系の観測出力として、ポテンショメータにより、次の２つが測定できる。
+			\begin{description}
+				\setlength{\itemindent}{0pt}
+				\item[1°] 台車の基準位置からの変位$r$に比例する電圧$y_1$
+				\item[2°] 棒の鉛直線となす角度$\theta$に比例する電圧$y_2$
+			\end{description}
+			一方、操作入力は、つぎのものである。
+			\begin{description}
+			\setlength{\itemindent}{0pt}
+			\item[1°] モータの駆動アンプへの入力電圧$u$
+			\end{description}
+			ここで、モータにより駆動される台車には、$u$に比例した駆動力が働くものとする。
+
+		\subsection{制御目的}
+			この倒立振子系は、2つの平衡点をもつ。１つは棒が鉛直線に沿って垂れ下がった状態、もう一つは棒が鉛直線に沿って倒立した状態である。前者は、棒を揺らせば、いわゆる振子となり、揺らせれば、いわゆる振子となり、ゆれは時間が立てば止まるので、安定平衡点である。後者は、いわゆる倒立振子であるが、倒立状態にある棒を少しでもつつけば、真っ逆さまに落ちていくので、不安定平衡点である。このような倒立振子系に対する制御目的として、つぎを考える。
+			\begin{description}
+			\setlength{\itemindent}{0pt}
+			\item[1゜]倒立状態にある棒が何らかの原因で傾いたとき、台車を動かして、棒をすみやかに倒立状態に戻す（不安定抵抗店の安定化）。
+			\item[2゜]倒立位置を指定した位置に移動させる。
+			\end{description}
+			% 1.1図の挿入
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width = 0.6 \linewidth]{pendulum.eps}
+					\caption{倒立振子系}
+					\label{fig:倒立振子系}
+				\end{center}
+			\end{figure}
+
+\chapter{モデリング}
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 	\section{数式モデル}
 		制御目的を達成する制御システムを設計するためにまず、倒立振子系について、状態方程式と観測方程式から成る数式モデルを導出する。
 		\subsection{状態方程式}
@@ -390,7 +430,11 @@ c_1 &  0 \\
 				=
 				\left[
 					\begin{array}{c}
+<<<<<<< HEAD
 						- f \dot{r} + ml\sin{\theta}\bullet\dot{\theta}^2 + au\\
+=======
+						- f \dot{r} + ml\sin{\theta}・\dot{\theta}^2 + au\\
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 						mgl\sin{\theta} - c\dot{\theta}
 					\end{array}
 				\right]
@@ -411,7 +455,11 @@ c_1 &  0 \\
 				\right]^{-1}
 				\left[
 					\begin{array}{c}
+<<<<<<< HEAD
 						- f \dot{r} + ml\sin{\theta}\bullet\dot{\theta}^2 + au\\
+=======
+						- f \dot{r} + ml\sin{\theta}・\dot{\theta}^2 + au\\
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 						mgl\sin{\theta} - c\dot{\theta}
 					\end{array}
 				\right]
@@ -429,7 +477,11 @@ c_1 &  0 \\
 						\dot{\theta}\\
 						K^{-1}\left[
 						\begin{array}{c}
+<<<<<<< HEAD
 							- f \dot{r} + ml\sin{\theta}\bullet\dot{\theta}^2 + au\\
+=======
+							- f \dot{r} + ml\sin{\theta}・\dot{\theta}^2 + au\\
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 							mgl\sin{\theta} - c\dot{\theta}
 						\end{array}
 						\right]
@@ -459,13 +511,21 @@ c_1 &  0 \\
 			\begin{eqnarray*}
 				A = \left[
 				\begin{array}{cc}
+<<<<<<< HEAD
 					0_{2\times2} & I_2\\
+=======
+					0_{2×2} & I_2\\
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 					A_{21} & A_{22}
 				\end{array}
 				\right],\,
 				B = \left[
 				\begin{array}{c}
+<<<<<<< HEAD
 					0_{2\times2}\\
+=======
+					0_{2×2}\\
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 					B_2
 				\end{array}
 				\right]
@@ -532,7 +592,11 @@ c_1 &  0 \\
 		= 
 		\left[
 			\begin{array}{cc}
+<<<<<<< HEAD
 				N & 0_{2\times2}
+=======
+				N & 0_{2×2}
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 			\end{array}
 		\right] 
 		=
@@ -553,7 +617,10 @@ c_1 &  0 \\
 		\label{eq:C,N}
 	\end{eqnarray}
 	を得る。
+<<<<<<< HEAD
 >>>>>>> c75b7fa605d82ac36c3c13370dbdcf9029f17b03
+=======
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 
 \section{物理パラメータの決定}
 	\subsection{$m$と$l$の測定}
@@ -580,6 +647,7 @@ c_1 &  0 \\
 			\label{fig:パラメータaの決定}
 		\end{center}
 	\end{figure}
+<<<<<<< HEAD
 
 	\subsection{ステップ応答による$M$と$f$の測定}
 
@@ -738,10 +806,156 @@ c_1 &  0 \\
 \end{figure}
 =======
 >>>>>>> c75b7fa605d82ac36c3c13370dbdcf9029f17b03
+=======
+
+	\subsection{ステップ応答による$M$と$f$の測定}
+
+	% 2.3図の挿入
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 0.6 \linewidth]{step.eps}
+			\caption{台車のステップ応答}
+			\label{fig:台車のステップ応答}
+		\end{center}
+	\end{figure}
+
+	振子を台車から取り外して、台車のステップ応答を測定する。そのときの運動方程式は
+	\begin{eqnarray*}
+		M\ddot{r} = au - fr
+	\end{eqnarray*}
+	であり、$u$から$r$までの伝達関数$G$を求めると
+	\begin{eqnarray*}
+		G(s) = \frac{K}{s(Ts+1)}
+	\end{eqnarray*}
+	となる。だたし、
+	\begin{eqnarray}
+		K = \frac{a}{f},T = \frac{M}{f}
+		\label{eq:K,T}
+	\end{eqnarray}
+	である。初期状態をゼロとするとき、このシステムのステップ応答は
+	\begin{eqnarray}
+		r(t) = KU_o(T\exp{\frac{-t}{T}}+t-T)
+		\label{eq:r(t)}
+	\end{eqnarray}
+	である。(図\ref{fig:台車のステップ応答}参照)。$U_0$はステップの高さである。(\ref{eq:r(t)})式において$t→∞$とすれば
+	\begin{eqnarray}
+		r(t) = KU_o(t-T)
+	\end{eqnarray}
+	となり、これから$T$と$K$をもとめ(図\ref{fig:台車のステップ応答}参照)、(\ref{eq:K,T})式より$M$と$f$を決定することができる。
+
+	\subsection{フィードバック制御による$M$と$f$の測定}
+	台車は外見は小さいが、台車を手で動かしてみると、かなり重たい。これはモータ(ギア付)の軸のトルクがあるためである。そこで、$M$と$f$は、アンプ・モータ・プーリ・ベルト・台車系の等価質量と等価摩擦係数として計測する。
+
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width=1.0\linewidth]{feedback.eps}
+			\caption{台車のフィードバック応答}
+			\label{fig:台車のフィードバック応答}
+		\end{center}
+	\end{figure}
+
+	台車の数式モデルは
+	\begin{eqnarray*}
+		M\ddot{r} & = & au - fr \\
+		y_1 & = & c_1r
+	\end{eqnarray*}
+	である。これに図\ref{fig:台車のフィードバック応答}に示すようにフィードバック
+	\begin{eqnarray*}
+		u = k(y_c - y_1)
+	\end{eqnarray*}
+	を施すと$(y_cは定数,k>0)$、閉ループシステムの応答は
+	\begin{eqnarray*}
+		M\ddot{y}_1 + f\dot{y}_1 + c_1aky_1 = c_1aky_c
+	\end{eqnarray*}
+	に従う。一方、偏差$z$を
+	
+	\begin{eqnarray*}
+		z = y_1 - y_c
+	\end{eqnarray*}
+	により定義すると、これは
+	\begin{eqnarray*}
+		\ddot{z} + 2\zeta\omega_n\dot{z} + \omega_n^2z = 0
+	\end{eqnarray*}
+	ただし
+	\begin{eqnarray}
+		\zeta = \frac{f}{2\sqrt{c_1akM}} , \omega_n = \sqrt{\frac{c_1ak}{M}}
+		\label{eq:ZETA,OMEGA}
+	\end{eqnarray}
+	に従う。この解は
+	\begin{eqnarray*}
+		0 < \zeta < 1
+	\end{eqnarray*}
+	このとき、減衰振動となり
+	\begin{eqnarray*}
+		z(t) = \frac{z_0}{\sqrt{1-\zeta^2}}\exp(-\omega_n\zeta
+		t)\,\sin(\omega_n\sqrt{1-\zeta^2}\,t+\phi)
+	\end{eqnarray*}
+	ただし
+	\begin{eqnarray*}
+		\phi = \tan^{-1}{\frac{\sqrt{1-\zeta^2}}{\zeta}}
+	\end{eqnarray*}
+	で与えられる。ここで、$z_0 = z(0) = -y_c$である。いま、$T$とし、
+	時刻$t_1$と$t_2 = t_1 + T$において波形$z$の山が隣合うものとする。
+	このときの振幅の減衰比は
+	\begin{eqnarray*}
+		\frac{|z_2(t_2)|}{|z_2(t_1)|} = \exp(-\lambda)
+	\end{eqnarray*}
+	ただし
+	\begin{eqnarray}
+		\lambda = \frac{2\pi\zeta}{\sqrt{1-\zeta^2}}
+		\label{eq:LAMBDA}
+	\end{eqnarray}
+	となる。この$\lambda$は対数減衰比と呼ばれる。また
+	\begin{eqnarray}
+		T = \frac{2\pi}{\omega_n\sqrt{1-\zeta^2}}
+		\label{eq:T}
+	\end{eqnarray}
+	が成り立つ。したがって、(\ref{eq:ZETA,OMEGA})と(\ref{eq:LAMBDA}),(\ref{eq:T})から、$M$と$f$は
+	\begin{eqnarray}
+		M = \frac{c_1akT^2}{4\pi^2 + \lambda^2},f = \frac{2\lambda M}{T}
+		\label{M,f}
+	\end{eqnarray}
+	のように与えられる。
+
+	\subsection{$J$と$c$の測定}
+	振子を自由振動させることにより、$J$と$c$を測定できる。その数式モデルは
+	\begin{eqnarray}
+		(J+ml^2)\ddot{\theta} & = & -mgl\sin{\theta} - c\dot{\theta}
+		\label{eq:J,c1}\\
+		y_2 & = & c_2\theta
+		\label{eq:J,c2}
+	\end{eqnarray}
+	で与えられる。$\theta$を微小範囲で考えると、(\ref{eq:J,c1})-(\ref{eq:J,c2})式は
+	\begin{eqnarray*}
+		\ddot{y}_2 + 2\zeta\omega_n\dot{y_2} + \omega_n^2y_2 = 0
+	\end{eqnarray*}
+	ただし
+	\begin{eqnarray*}
+		\zeta = \frac{c}{2\sqrt{mgl(J + ml^2)}},\,
+		\omega_n = \sqrt{\frac{mgl}{J + ml^2}}
+	\end{eqnarray*}
+	のように書くことができる。この解で表される減衰振動の対数減衰率を$\lambda$、周期を$T$とすると、
+	関係式(\ref{eq:LAMBDA}),(\ref{eq:T})が成り立つことから、$J,c$は
+	\begin{eqnarray}
+		J = \frac{mglT_2^2}{4\pi^2 + \lambda^2} - ml^2 ,\, c = \frac{2\lambda(J +
+		ml^2)}{T}
+	\end{eqnarray}
+	のように与えられる。
+
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 0.7 \linewidth]{freePend.eps}
+			\caption{振子の自由振動}
+			\label{fig:振子の自由振動}
+		\end{center}
+	\end{figure}
+
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 
 \section{パラメータの検証}
 求めたパラメータを以下に示す。
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 % 2.3図の挿入
 \begin{figure}[htbp]
@@ -885,6 +1099,10 @@ J = \frac{mglT_2^2}{4\pi^2 + \lambda^2} - ml^2 ,\, c = \frac{2\lambda(J +
 =======
 \begin{table}[hbtp]
 	\begin{center}
+=======
+\begin{table}[hbtp]
+	\begin{center}
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 		\caption{物理パラメータ}
 		\medskip
 		\begin{tabular}{|ll|l|} \hline
@@ -901,12 +1119,74 @@ J = \frac{mglT_2^2}{4\pi^2 + \lambda^2} - ml^2 ,\, c = \frac{2\lambda(J +
 			$c_2$ & $[\mathrm{V/rad}]$ & 1.0 \\ \hline
 			$g$ & $[\mathrm{m/s^2}]$ & 9.8 \\ \hline
 		\end{tabular}
+<<<<<<< HEAD
 >>>>>>> c75b7fa605d82ac36c3c13370dbdcf9029f17b03
+	\end{center}
+\end{table}
+=======
 	\end{center}
 \end{table}
 
 	\subsection{$M$と$F$の検証}
 
+	図\ref{fig:step11}、図\ref{fig:step12}、図\ref{fig:step13}、図\ref{fig:step14}、図\ref{fig:step15}は、それぞれ入力電圧11V,12V,13V,14V,15Vでのステップ応答により測定した$M$と$f$を用いたステップ制御のシミュレーションのデータと、実験のデータを重ね合わせたグラフである。シミュレーション結果と実験結果はほぼ一致しており、ステップ応答により求めたパラメータは適切であると考えられる。
+
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{step11.eps}
+			\caption{入力電圧11VにおけるMとfの検証}
+			\label{fig:step11}
+		\end{center}
+	\end{figure}
+
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{step12.eps}
+			\caption{入力電圧12VにおけるMとfの検証}
+			\label{fig:step12}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{step13.eps}
+			\caption{入力電圧13VにおけるMとfの検証}
+			\label{fig:step13}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{step14.eps}
+			\caption{入力電圧14VにおけるMとfの検証}
+			\label{fig:step14}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{step15.eps}
+			\caption{入力電圧15VにおけるMとfの検証}
+			\label{fig:step15}
+		\end{center}
+	\end{figure}
+	
+	
+	\subsection{$J$と$c$の検証}
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[width = 1.0 \linewidth]{freePendulum.eps}
+			\caption{測定した$J$と$c$を用いたシミュレーションと実験データ}
+			\label{fig:Jc}
+		\end{center}
+	\end{figure}
+	図\ref{fig:Jc}、は測定した$J$と$c$を用いた自由振動のシミュレーションのデータと、
+	実際の自由振動の実験結果を重ね合わせたグラフである。
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
+
+	\subsection{$M$と$F$の検証}
+
+<<<<<<< HEAD
 	図\ref{fig:step11}、図\ref{fig:step12}、図\ref{fig:step13}、図\ref{fig:step14}、図\ref{fig:step15}は、それぞれ入力電圧11V,12V,13V,14V,15Vでのステップ応答により測定した$M$と$f$を用いたステップ制御のシミュレーションのデータと、実験のデータを重ね合わせたグラフである。シミュレーション結果と実験結果はほぼ一致しており、ステップ応答により求めたパラメータは適切であると考えられる。
  \clearpage
 	\begin{figure}[htbp]
@@ -997,6 +1277,8 @@ J = \frac{mglT_2^2}{4\pi^2 + \lambda^2} - ml^2 ,\, c = \frac{2\lambda(J +
 
 =======
 >>>>>>> c75b7fa605d82ac36c3c13370dbdcf9029f17b03
+=======
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 \chapter{制御系設計}
 	\section{特性解析(未完成)}
 		前章までに、倒立振子系の数式モデルおよび物理パラメータを求めることができた。よって、倒立振子の状態空間表現における行列$A,B,C$の値を計算することができる。$A,B,C$の値はそれぞれ、
@@ -1243,7 +1525,11 @@ J = \frac{mglT_2^2}{4\pi^2 + \lambda^2} - ml^2 ,\, c = \frac{2\lambda(J +
 			u &=& \frac{1}{a}(f\dot{r} - ml\sin\theta\dot{\theta}^{2} + ml\cos\theta\ddot{\theta} + (M + m)v)\\
 			v &=& -\frac{c\dot{\theta}}{ml\cos\theta} + {\rm sat}_{ng}(k(E-E_{0}){\rm sign}(\dot\theta\cos\theta))
 		\end{eqnarray}
+<<<<<<< HEAD
 		とする。ただし、$\rm{sat}$は最小値が$-ng$、最大値が$ng$の飽和関数である。$n$は重力加速度(垂直下向き)と台車の加速度(水平方向)の比である。また、$k$を大きくすると、早く$E$が$E_{0}$に収束する。
+=======
+		とする。ただし、$\roman{sat}$は最小値が$-ng$、最大値が$ng$の飽和関数である。$n$は重力加速度(垂直下向き)と台車の加速度(水平方向)の比である。また、$k$を大きくすると、早く$E$が$E_{0}$に収束する。
+>>>>>>> 1393f4f07a5b2b89c455e47e2d9b68edaf40a925
 		
 \chapter{シミュレーション}
 	\section{安定化制御}
