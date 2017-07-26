@@ -39,7 +39,7 @@ Func Matrix link_eqs_discretion(t, x)
 Matrix x;
 Real t;
 {
-  Matrix xp, xh, u, y, xref;
+  Matrix xp, xh, u, y, xref, E;
 
   xp = x(1:4,1);    // 倒立振子の状態
   z = x(5:6,1);     // オブザーバの状態
@@ -51,7 +51,10 @@ Real t;
 
   y = C*xp;
 
-  xh = Ch*z + Dh*y;
+  xh = Ch*z + Dh*y;   // 状態の推定値
+
+  E = abs(xp(3:4,1) - xh(3:4,:));  // 推定誤差の計算
+
   if(t <= 5){
     xref = [0 0 0 0]';
   }
@@ -73,7 +76,7 @@ Real t;
 
   z = Ahd*z + Bhd*y + Jhd*u; // オブザーバの状態の更新
 
-  return u;
+  return [[u][E]];
 }
 
 
@@ -100,7 +103,7 @@ Matrix x,u;
   B = K\A;
 
   dxp = trans([dr dth B(1,1) B(2,1)]); // 倒立振子の状態の微分(非線形モデル)
-  dz = Ah*z + Bh*y + Jh*u; // オブザーバの状態の微分
+  dz = Ah*z + Bh*y + Jh*u(1); // オブザーバの状態の微分
   dx = [[dxp][dz]];
   return dx;
 }
@@ -133,12 +136,16 @@ Func void main()
 
   {T, X, U} = Ode45Auto(t0, t1, x0, diff_eqs_discretion, link_eqs_discretion, tol, dtsav);
 
-  mgplot(1, T, X(1:2,:), {"r","th"});
-  mgplot(2, T, U, {"u"});
+  // mgplot(1, T, X(1:2,:), {"r","th"});
+  // mgplot(2, T, U, {"u"});
+  //
+  // sim(1,:) = T;
+  // sim(2:3,:) = X(1:2,:);
+  //
+  // read filename;
+  // print [[sim(1,:)][sim(2:3,:)]] >> filename + ".mat";
 
-  sim(1,:) = T;
-  sim(2:3,:) = X(1:2,:);
-
+  filename = "CalcError";
   read filename;
-  print [[sim(1,:)][sim(2:3,:)]] >> filename + ".mat";
+  print[[T][U(2:3,:)]] >> filename + ".mat";
 }
