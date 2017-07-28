@@ -12,6 +12,7 @@ report/*
 !report/eps/*
 !report/*.tex
 !report/document/*
+!report/*.pdf
 
 ### author takikawa ###
 report_takikawa/*.aux
