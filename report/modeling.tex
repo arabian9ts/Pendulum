@@ -523,5 +523,68 @@ $$
 
 
 \subsection{パラメータの検証}
+測定した物理パラメータを表\ref{pend_params}に示す。
+
+\begin{table}[htbp]
+    \begin{center}
+        \caption{表\ref{pend_params}: 測定した物理パラメータ}
+        \begin{tabular}{|l|r|} \hline
+            $m$ $[\mathrm{kg}]$ & 0.038 \\ \hline
+            $l$ $[\mathrm{m}]$ & 0.12 \\ \hline
+            $M(\rm{Step})$ $[\mathrm{kg}]$ & 1.00 \\ \hline
+            $f(\rm{Step})$ $[\mathrm{kg/s}]$ & 9.67 \\ \hline
+            $M(\rm{Feedback})$ $[\mathrm{kg}]$ & 1.51 \\ \hline
+            $f(\rm{Feedback})$ $[\mathrm{kg/s}]$ & 16.5 \\ \hline
+            $J$ $[\mathrm{kg \cdot m^2}]$ & 3.90E-4 \\ \hline
+            $c$ $[\mathrm{kg \cdot m^2/s}]$ & 9.82E-5 \\ \hline
+            $a$ $[\mathrm{N/V}]$ & 0.49 \\ \hline
+            $c_1$ $[\mathrm{V/m}]$ & 1.0 \\ \hline
+            $c_2$ $[\mathrm{V/rad}]$ & 1.0 \\ \hline
+            $g$ $[\mathrm{m/s^2}]$ & 9.8 \\ \hline
+        \end{tabular}
+        \label{pend_params}
+    \end{center}
+\end{table}
+
+次に、表\ref{pend_params}に示すパラメータの検証を行う。
+
+\subsection{$M$と$f$の検証}
+図\ref{step13_correct}に、入力電圧$13.0$[V]のときの台車系のステップ応答とそのシミュレーションを示す。
+また、図\ref{feedback_correct}に台車系のフィードバック応答とそのシミュレーションを示す。
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{step13_correct.eps}
+        \caption{図\ref{step13_correct}: ステップ応答による$M$と$f$の検証}
+        \label{step13_correct}
+    \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{feedback_correct.eps}
+        \caption{図\ref{feedback_correct}: ステップ応答による$M$と$f$の検証}
+        \label{feedback_correct}
+    \end{center}
+\end{figure}
+
+図\ref{feedback_correct}では、シミュレーション結果と実験結果が不一致なため、不適切んばパラメータ
+である。一方、図\ref{step13_correct}では、直線近似を行うために十分な一致が見られるため、
+ステップ応答により測定した$M = 1.00$と$f = 9.67$を用いて実験を行う。
+
+\subsection{$J$と$c$の検証}
+図\ref{jc_correct}に振子の自由振動の応答とそのシミュレーションを示す。
+実験とシミュレーションの波形を比較すると、初期位相が異なっているが、振幅と周期が近しい値をとっているので
+測定した$J$ = 3.90E-4と$c$ = 9.82E-5を実験に用いる。
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{jc_correct.eps}
+        \caption{図\ref{jc_correct}: 自由振動による$J$と$c$の検証}
+        \label{jc_correct}
+    \end{center}
+\end{figure}
+
+
 
 % =============================== chapter 2 END =============================== %
