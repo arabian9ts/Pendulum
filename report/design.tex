@@ -24,10 +24,10 @@ $$
         \caption{表\ref{eigen_A}: $A$の固有値}
         \begin{tabular}{|c|c|} \hline
             固有値 & Re[$\lambda_{i}$] \\ \hline \hline
-            0 & 0 \\ \hline
-            0 & 0 \\ \hline
-            0 & 0 \\ \hline
-            0 & 0 \\ \hline
+            $0 + 0i$ & $0$ \\ \hline
+            $-8.89 \times 10^{-2} + 6.93i$ & $-8.89 \times 10^{-2}$ \\ \hline
+            $-8.89 \times 10^{-2} - 6.93i$ & $-8.89 \times 10^{-2}$ \\ \hline
+            $-9.45 + 0i$ & $-9.45$ \\ \hline
         \end{tabular}
         \label{eigen_A}
     \end{center}
@@ -64,10 +64,10 @@ $$
 式(\ref{ABC})において,\MaTX{}を用いて$U_{c}$, $U_{o}$のランクを計算した結果,以下のようになった.
 
 $$
-    Uc, Uoのランク
+    rank[U_c] = 4,\ rank[U_o] = 4
 $$
 
-以上から,倒立振子系のシステムは不安定であり,可制御,可観測である.
+以上から,倒立振子系のシステムは不安定であり,可制御かつ可観測である.
 
 \subsection{制御システムの構成}
 図\ref{controller_system}に,倒立振子系に対する制御システムの構成を示す.
