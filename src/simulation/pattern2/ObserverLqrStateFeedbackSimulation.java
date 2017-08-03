@@ -10,8 +10,7 @@ import org.mklab.tool.control.system.SystemSolver;
 import org.mklab.tool.graph.gnuplot.Canvas;
 import org.mklab.tool.graph.gnuplot.Gnuplot;
 
-import model.ObserverLqrStateFeedbackPendulum;
-import model.ObserverPolePlaceStateFeedbackPendulum;
+import model.pattern2.ObserverPolePlaceStateFeedbackPendulum;
 
 /**
  * 倒立振子の(LQ最適制御に基づく状態フィードバック+連続時間オブザーバ)
