@@ -6,8 +6,34 @@
 倒立振子の線形モデルの状態空間表現は以下のようになる.
 
 \begin{equation}
-    A,\ B,\ Cの値
+    A = 
+    \left[
+        \begin{array}{cccc}
+            0  &  0      &  0      &  0         \\
+            0  &  0      &  1      &  1         \\
+            0  & -0.215  &  -9.52  &  -0.00469  \\
+            0  &  -48.7  &  -46.3  &  -0.107    \\
+        \end{array}
+    \right]
     \label{ABC}
+    ,\
+    B = 
+    \left[
+        \begin{array}{c}
+            0      \\
+            0      \\
+            0.482  \\
+            2.35   \\
+        \end{array}
+    \right]
+    ,\
+    C = 
+    \left[
+        \begin{array}{cccc}
+            1.0  &  0    &  0  &  0  \\
+            0    &  1.0  &  0  &  0  \\
+        \end{array}
+    \right]
 \end{equation}
 
 まず,行列$A$の安定判別を行う.$A$のすべての固有値に関して,実部が負であれば$A$は安定性行列である.
