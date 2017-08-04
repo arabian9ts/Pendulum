@@ -15,9 +15,6 @@ report/*
 !report/*.pdf
 
 ### author takikawa ###
-report_takikawa/*.aux
-report_takikawa/*.dvi
-report_takikawa/*.lof
-report_takikawa/*.log
-report_takikawa/*.lot
-report_takikawa/*.toc
+report_takikawa/*
+!report_takikawa/*.tex
+!report_takikawa/*.pdf
